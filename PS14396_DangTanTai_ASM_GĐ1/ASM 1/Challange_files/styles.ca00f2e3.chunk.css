@@ -1,0 +1,15 @@
+.text:hover {
+  background: #ddd;
+  border: 1px solid #ddd;
+}
+
+.text {
+  border-radius: 5px;
+}
+.clock {
+  background: url('/static/img/unit4_2/clock.png');
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

@@ -1,0 +1,69 @@
+#wrapper
+{
+    width: 500px;
+    background-color: gainsboro;
+    padding: 10px;
+    margin: 50px auto 0px;
+    border-radius: 10px;
+}
+.form-group
+{
+    margin: 10px 0px;
+}
+.f-ctrl
+{
+    width: calc(100% - 10px);
+    padding: 5px;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid darkblue;
+    box-shadow: 0 0 3px blue;
+    margin-top: 5px;
+}
+fieldset
+{
+    width: calc(100% - 28px);
+    border: 1px solid blue;
+    box-shadow: 0 0 3px blue;
+    border-radius: 3px;
+}
+legend
+{
+    background-color: gainsboro;
+}
+.form-group label
+{
+    font-weight: bold;
+    font-variant: small-caps;
+}
+.f-ctrl:focus
+{
+    background-color: whitesmoke;
+    box-shadow: 0 0 3px red;
+    border: 1px solid yellow;
+}
+.f-btn
+{
+    padding: 8px 30px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: orangered;
+    box-shadow: inset 0 0 20px blue;
+}
+.f-btn:hover, .f-btn:focus
+{
+    color: blue;
+    box-shadow: inset 0 0 20px orangered;
+}
+.f-btn:disabled
+{
+    box-shadow: inset 0 0 20px gray;
+    color: orangered;
+}
+#btn-zone
+{
+    border-top: 1px solid black;
+    padding-top: 10px;
+}

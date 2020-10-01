@@ -1,0 +1,38 @@
+.container
+{
+    width: 400px;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid rgb(228, 86, 117);
+    border-radius: 3px ;
+    float: left;
+    background-color: black;
+    color: white;
+}
+form
+{
+    font-variant: small-caps;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 10px;
+}
+.Hinhanh
+{
+    font-weight: normal;
+    font-variant: normal;
+}
+input[type=text]
+{
+    width: 350px;
+}
+select
+{
+    width: 350px;
+}
+textarea
+{
+    width: 350px;
+}
+hr{
+    width: 350px;
+}

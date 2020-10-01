@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["PjFUL"]); }
+
+__d("showReadOnlyErrorDialog",["fbt","ExceptionDialog"],(function(a,b,c,d,e,f,g){"use strict";function a(){b("ExceptionDialog").show(g._("Read Only Mode"),g._("The operation was not completed, making changes is not allowed in read only mode."));return{}}e.exports=a}),null);

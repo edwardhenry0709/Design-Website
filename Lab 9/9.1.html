@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 9.1</title>
+    <link rel="stylesheet" href="./9.1.css">
+</head>
+<style>
+</style>
+
+<body>
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <div>Họ và tên:</div>
+            <input type="text" id="tenDN">
+            <p>Giới tính:&#160;
+                <input type="radio" name="gender" id="Gender1">Nam
+                <input type="radio" name="gender" id="Gender2">Nữ
+            </p>
+            <div>Hình ảnh:</div>
+            <div class="Hinhanh"><input type="submit" id="anh" value="Choose File">&#160;No file chosen</div>
+            <div>Quốc tịch</div>
+            <select name="quocTich" id="">
+                <option value="0">United States</option>
+                <option value="1">VietNam</option>
+                <option value="2">Rusia</option>
+                <option value="3">China</option>
+                <option value="4">England</option>
+            </select>
+            <p> Sở thích: <br>
+                <input type="checkbox" id="check">Thể thao
+                <input type="checkbox" id="check">Du lịch
+                <input type="checkbox" id="check">Âm nhạc
+                <input type="checkbox" id="check">Ẩm thực
+            </p>
+            <p>
+                Ghi chú: <br>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </p>
+            <hr>
+            <p>
+                <input type="submit" id="DK" value="Đăng ký">
+                <input type="submit" id="Reset" value="Nhập lại">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+#wrapper
+{
+    width: 600px;
+    background-color:tomato;
+    border: 4px solid tomato;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px auto;
+}
+.title
+{
+    width: 100%;
+}
+.name
+{
+    font-size: large;
+    color: white;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+.name a
+{
+    font-size: 14px;
+    color: yellow;
+    margin-left: 10px;
+}
+.name a:hover
+{
+    font-size: 14px;
+    color: blue;
+    margin-left: 10px;
+}
+.price
+{
+    font-size: larger;
+    color: yellow;
+    padding: 15px;
+    padding: 0px;
+    margin-left: 14px;
+    font-weight: bolder;
+}
+#box
+{
+    width: 100%;
+    background-color: white;
+    display: inline-block;
+}
+.box-r
+{
+    width: 35%;
+    float: left;
+}
+.box-r img
+{
+    width: 80%;
+    margin: 25px;
+    margin-left: 60px;
+}
+.box-l
+{
+    width: 60%;
+    float: right;
+}
+.tieu-de
+{
+    font-size: large;
+    color: darkslategray;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+.chi-tiet
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+i
+{
+    color: dimgray;
+    font-weight: bold;
+}
+#khm div
+{
+    margin-left: 20px;
+}
+.box-l img
+{
+    width: 70px;
+    float: left;
+}
+.pr1
+{
+    font-size: 15px;
+}
+.btn
+{
+    clear: both;
+    margin: 0 auto;
+    display: block;
+    padding: 10px 20px;
+    background-color:orangered;
+    border-radius: 30px;
+    width: 100px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 30px;
+}

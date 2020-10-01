@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["TeJ15"]); }
+
+__d("AdsMgmtCreativeV2BreakdownDataProviderPlugin",["ImmutableRecordWithV4Types","gkx"],(function(a,b,c,d,e,f){"use strict";a=b("ImmutableRecordWithV4Types").Record;c={initialState:a({objectBreakdown:b("gkx")("1051596")?"adset_id":null,isActive:!1})()};e.exports=c}),null);

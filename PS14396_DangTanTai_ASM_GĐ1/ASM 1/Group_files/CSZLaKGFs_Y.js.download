@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["eU7FL"]); }
+
+__d("AdsMgmtCreativeV2BreakdownDataProvider",["Laminar","AdsMgmtCreativeV2BreakdownDataProviderPlugin"],(function(a,b,c,d,e,f){"use strict";e.exports=b("Laminar").__createProvider(b("AdsMgmtCreativeV2BreakdownDataProviderPlugin"),"AdsMgmtCreativeV2BreakdownDataProviderPlugin")}),null);

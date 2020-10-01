@@ -1,0 +1,25 @@
+table
+{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    border-collapse: collapse;
+}
+tr{
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid rgb(11, 165, 170);
+}
+td{
+    padding: 10px;
+}
+.hang1
+{
+    background-color: rgb(83, 127, 221);
+    color: white;
+    font-size: smaller;
+
+}
+.le
+{
+    background-color: honeydew ;
+}

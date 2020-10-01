@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+</head>
+<style>
+    table
+    {
+        display: block;
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 680px;
+        text-align: center;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+    tr
+    {
+        border-top: 2px solid #75B43A;
+    }
+    table tr td
+    {
+        border-collapse: collapse;
+        border: 1px solid #75B43A;
+        padding: 10px 0px;
+    }
+    table tr th
+    {
+        border-collapse: collapse;
+        border: 1px solid #75B43A;
+        padding: 10px 0px;
+    }
+    tr:first-child th
+    {
+        background-color: #75B43A;
+        border: 1px solid white;
+        border-top: 1px solid #75B43A;
+        border-bottom: 1px solid #75B43A;
+        color: white;
+    }
+    tr:last-child th
+    {
+        background-color: #E1F8CB;
+    }
+    tr:first-child th:first-child
+    {
+        border-left: 1px solid #75B43A;
+    }
+    tr:hover
+    {
+        background-color: yellow;;
+    }
+    tr:first-child th:last-child
+    {
+        border-right: 1px solid #75B43A;
+    }
+    #txtRed
+    {
+        color: red;
+    }
+    #txtRed.channel
+    {
+        font-weight: lighter;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .team
+    {
+        width: 200px;
+    }
+    .channel
+    {
+        width: 100px;
+        font-weight: bold;
+        font-size: small;
+    }
+    .time
+    {
+        width: 100px;
+    }
+    .tiso
+    {
+        width: 80px;
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <table>
+            <tr>
+                <th>Thời gian</th>
+                <th colspan="3">Trận đấu</th>
+                <th>Trực tiếp</th>
+            </tr>
+            <tr>
+                <th colspan="5">Vòng chung kết U19 châu Á 2016</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <td class="time">17/10<br>20:30</td>
+                    <td id="txtRed" class="team">U19 Việt Nam</td>
+                    <td class="tiso"></td>
+                    <td class="team">U19 UAE</td>
+                    <td id="txtRed" class="channel">Foxsports 2</td>
+                </tr>
+                <tr>
+                    <td>17/10<br>20:30</td>
+                    <td>U19 Iran</td>
+                    <td></td>
+                    <td>U19 Nhật Bản</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17/10<br>23:30</td>
+                    <td>U19 Iraq</td>
+                    <td></td>
+                    <td>U19 Triều tiên</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>17/10<br>23:30</td>
+                    <td>U19 Yemen</td>
+                    <td></td>
+                    <td>U19 Qatar</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

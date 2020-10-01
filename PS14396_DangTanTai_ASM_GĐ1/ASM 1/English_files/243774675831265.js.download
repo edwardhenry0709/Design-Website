@@ -1,0 +1,14 @@
+window.mcwidget = {"appId":"532160876956612","pageId":"243774675831265","page_name":"Học tiếng Anh giao tiếp Langmaster","fb_page_id":"243774675831265","widget_phone":null,"widgets":[],"widgetLocale":"en_US","defaultSize":0,"fbSDKVersion":"v3.1","whitelist":["e04a45f0a505569fddc714decd22a84e8cb421b628b371dd70f2ca7035eac346","f2cbfeda670dc91d10651057f2d9c1f9010175cf28059cfc43337b7d2c6f3f4d","7e18ed5915fb981a2862685cf435bfe2a4e26b46461c648f8099151ef1043688","49af6e507b449dd3101b914bc392aa98900aac2c9530e1a71e7cabeb535cedef","933e7be645f6b25ea26a974b7f50de0ec6a94f72f94f3c19e21cf09c740d0893","b05e4befb9dffb385b916f5a821b17c8b2356b0f18f0f054be722048a88f4cb2","b4b8de68198980c872abec0d7950d092fd92b63ba40c038614d8c9dee140085c","4c14a695f219b0c498fbe1a3ed394734a2b67119215e52e31d64f6b9f2217617","6937a1984989011c12b4d2d4b687c4fdfc7fad9148a38e0f0a58e5c4ff753869","1c8d0a4b57c53f1051025d87d55f910dbf1ad1ad513b838a6a2011e16ed85357"],"smsModalConsentText":"Please note that by typing in your phone number in the field above you are agreeing to receive autodialed personal and marketing text messages to your mobile number. Consent is not required for purchase. Message and data rates may apply. Reply “STOP” by SMS to cancel."};
+
+
+(function(d, s, id){
+    var host = 'mccdn.me/122664';
+
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = '//' + host + '/assets/js/widget.js';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'mcwidget-core'));
+
+        

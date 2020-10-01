@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["eAgwV"]); }
+
+__d("PaymentModuleComet",[],(function(a,b,c,d,e,f){"use strict";var g=!0;function a(a){g=a}function b(){return g}e.exports={setIsComet:a,isComet:b}}),null);

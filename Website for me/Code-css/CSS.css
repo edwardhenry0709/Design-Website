@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header
+{
+    width: 1000px;
+    height: 130px;
+    margin-left: 20%;
+    margin-right: 20%;
+}

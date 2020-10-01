@@ -1,0 +1,71 @@
+.container
+{
+position: relative;
+}
+.top-right
+{
+position: absolute;
+top: -6px;
+right: 10px;
+border-bottom-left-radius: 30px;
+background-color: orangered;
+width: 20%;
+}
+.company .info
+{
+bottom: 30px;
+left: 15px;
+}
+.M
+{
+    text-align: center;
+}
+.M>nav
+{
+    background-color: orangered;
+}
+.M>nav>a
+    {
+        color: white;
+font-size: 30px;
+        text-decoration: none;
+    }
+  .M>nav>ul>li>a:visited
+    {
+        color: red;
+    }
+    .M>nav>ul>li>a:hover
+    {
+        text-decoration: underline;
+        color: aquamarine;
+    }
+    .M>header{
+        border: black;
+        width: auto;
+        height: auto;
+        margin: 5px;
+        padding: 0px;
+    }
+header>.company
+{
+position: absolute;
+left: 15px;
+bottom: 590px;
+}
+header>.company>h1
+{
+    text-shadow:0 0 10px orange;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-variant: normal;
+    color: white;
+border-bottom: 10px orangered;
+padding-bottom: 0px red;
+box-shadow:orangered;
+}
+header p{
+    text-align: center;
+    font-size: 30px;
+    font-variant: small-caps;
+    color: aqua;
+}

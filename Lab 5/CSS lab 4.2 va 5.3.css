@@ -1,0 +1,17 @@
+.Menu1{
+    text-align: center;
+    }
+    .Menu a {
+        text-decoration: none;
+    }
+
+    .Menu a:visited    {
+        color:green;
+    }
+    .Menu a:hover {
+        color: purple;
+        text-decoration: underline;
+    }
+    ul li{
+        display: inline;
+    }

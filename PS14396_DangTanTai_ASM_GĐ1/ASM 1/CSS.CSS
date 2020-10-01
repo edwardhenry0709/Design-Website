@@ -1,0 +1,97 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.X {
+    max-width: auto;
+    margin: 0 auto;
+}
+
+.X>nav {
+    margin: 5px;
+    color: black;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-variant: normal;
+    background-color: rgb(37, 34, 34);
+    background-size: auto;
+    line-height: 50px;
+    box-shadow: aqua;
+    display: block;
+}
+
+.X>nav>a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.X>nav>a:hover {
+    color: silver;
+    text-decoration: underline;
+}
+
+.X>nav>a:visited {
+    color: lightgray;
+}
+
+.X>header {
+    border: rgb(39, 38, 38);
+    width: auto;
+    height: auto;
+    height: 0px;
+    background-image: url(./channels4_banner.jpg);
+    background-size: 100% 100%;
+    width: auto;
+    height: 5cm;
+}
+
+.X>aside {
+    margin: 2px;
+    text-align: center;
+    float: right;
+    color: aqua;
+    width: 23%;
+    min-height: auto;
+    background-color: black;
+    border-color: yellow;
+}
+
+.X>aside>ul>li>a {
+    box-shadow: red;
+    text-decoration: none;
+    color: white;
+}
+
+.X>aside>ul>li>a:hover {
+    text-decoration: underline;
+}
+
+.X>aside>ul>li>a:visited {
+    color: gold;
+}
+
+iframe[name=page] {
+    width: 100%;
+    min-height: 400px;
+}
+
+.X>article {
+    background-image: url(./English.html);
+    width: 76%;
+    min-height: 400px;
+    background-color: white;
+    float: left;
+}
+
+.X>footer {
+    clear: both;
+    border-top: 10px double red;
+    line-height: 50px;
+    background-color: white;
+    text-align: center;
+    font-variant: small-caps;
+    color: green;
+}

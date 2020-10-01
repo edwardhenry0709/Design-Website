@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["gFlrP"]); }
+
+__d("addLWICoBDialogConfig",["BaseModal.react","CometBlueBridge.react","React","ReactDOM"],(function(a,b,c,d,e,f){"use strict";var g=b("React");function a(a,c,d){var e=document.body,f=document.createElement("div");e!=null&&e.appendChild(f);e=function(){d!=null&&d.apply(void 0,arguments),window.setTimeout(function(){b("ReactDOM").unmountComponentAtNode(f),f.remove()},0)};b("ReactDOM").render(g.jsx(b("CometBlueBridge.react"),{children:g.jsx(b("BaseModal.react"),{children:g.jsx(a,babelHelpers["extends"]({},c,{onClose:e}))})}),f)}e.exports=a}),null);

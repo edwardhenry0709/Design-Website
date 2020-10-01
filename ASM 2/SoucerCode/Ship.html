@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS.css">
+</head>
+<style>
+</style>
+<body>
+    <div class="container">
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <div>Họ và tên:</div>
+            <input type="text" id="tenDN">
+            <div>Hình ảnh khuôn mặt:</div>
+            <div class="Hinhanh"><input type="submit" id="anh" value="Choose File">&#160;No file chosen</div>
+            <div>Tỉnh</div>
+            <select name="quocTich" id="">
+                <option value="0">Bình DƯơng</option>
+                <option value="1">TP HCM</option>
+                <option value="2">Hà nội</option>
+                <option value="3">Dà nẵng</option>
+                <option value="4">Vũng tàu</option>
+            </select>
+            <p> Chọn Khoá học <br>
+                <input type="checkbox" id="check">24 ngày lấy lại căn bản
+                <input type="checkbox" id="check">Khoá nâng cao toàn diện
+                <input type="checkbox" id="check">TOEIC
+                <input type="checkbox" id="check">IETLS
+            </p>
+            <p>
+                Ghi chú: <br>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </p>
+            <hr>
+            <p>
+                <input type="submit" id="DK" value="Gửi">
+                <input type="submit" id="Reset" value="Nhập lại">
+            </p>
+        </form>
+    </div>
+</body>
+</html>

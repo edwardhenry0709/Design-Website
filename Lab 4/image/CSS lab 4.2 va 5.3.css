@@ -1,0 +1,30 @@
+.Menu1{
+    text-align: center;
+    }
+    .Menu a {
+        text-decoration: none;
+    }
+
+    .Menu a:visited    {
+        color:green;
+    }
+    .Menu a:hover {
+        color: purple;
+        text-decoration: underline;
+    }
+    ul li{
+        display: block;
+    }
+.Y
+{
+    width: 95%;
+    float: left;
+}
+.mau
+{
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+}

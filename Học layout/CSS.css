@@ -1,0 +1,16 @@
+.menu div{
+    text-align: center;
+}
+p>img
+{
+border:5 5 5px yellow;
+padding: 0 5px;
+border-radius: 10px;
+margin: 20px;
+box-shadow: blue;
+}
+p>img:hover
+{
+box-shadow: green;
+background-color: brown;
+}

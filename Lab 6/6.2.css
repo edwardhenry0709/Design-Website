@@ -1,0 +1,69 @@
+.X
+{
+max-width: 1000px;
+margin: 0 auto;
+}
+.X>header
+{
+height: 1;
+width: 4;
+background-image: url(./2-nature.jpg );
+background-size: 100% 100%;
+height: 0px;
+padding-bottom: 25%;
+}
+.X>nav>img
+{
+    text-align: left;
+}
+.X>nav
+{
+text-align: right;
+font-variant: small-caps;
+color: white;
+background-color: orange;
+line-height: 40px;
+}
+.X>article
+{
+width: 60%;
+min-height: 400px;
+background-color: white;
+float: left;
+}
+.X>aside
+{
+width: 25%;
+float: right;
+min-height: 400px;
+ background-color:none;
+ color: white;
+}
+.X>footer
+{
+clear: both;
+border-top: 5px double orangered;
+line-height: 50px;
+text-align: center;
+font-variant: small-caps;
+}
+.X>nav>a
+{
+text-decoration: none;
+margin: 0 10px;
+color: white;
+}
+.X>nav>a:hover
+{
+text-decoration: underline;
+color: aqua;
+}
+.X>nav>a:visited
+{
+    color:lightyellow;
+}
+.iframe[name=page]
+{
+width: 100%;
+min-height: 400px;
+}

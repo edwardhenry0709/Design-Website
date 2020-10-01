@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./10.1.css">
+    <title>Lab 10.1</title>
+</head>
+
+<body style="margin: 0px; padding: 0px;">
+    <div id="wrapper" style="margin: 10px auto;">
+        <form action="">
+            <div class="form-group">
+                <label for="">Họ và tên:</label>
+                <input type="text" placeholder="None" class="f-ctrl" autofocus>
+            </div>
+            <div class="form-group">
+                <fieldset>
+                    <legend>Giới tính:</legend>
+                    <label for="gdr-nam"><input type="radio" id="gdr-nam" name="gender" checked>Nam</label>
+                    <label for="gdr-nu"><input type="radio" id="gdr-nu" name="gender">Nữ</label>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label for="">Ngày sinh:</label>
+                <input type="date" class="f-ctrl" value="">
+            </div>
+            <div class="form-group">
+                <label for="">Điểm:</label>
+                <input type="number" class="f-ctrl" min="0" max="10" step="0.25">
+            </div>
+            <div class="form-group">
+                <label for="">Nghề nghiệp:</label>
+                <input list="jobs" class="f-ctrl">
+                <datalist id="jobs">
+                    <option value="Thiết kế Đồ Hoạ"></option>
+                    <option value="Lập trình Mobile"></option>
+                    <option value="Kế toán nhưng học dốt toán"></option>
+                    <option value="Bác sĩ tâm thần"></option>
+                    <option value="Kiến trúc sư"></option>
+                    <option value="Ca sĩ :)"></option>
+                </datalist>
+            </div>
+            <div class="form-group">
+                <fieldset>
+                    <legend>Hobbies :</legend>
+                    <label for="st1"><input type="checkbox" id="st1">Code</label>
+                    <label for="st2"><input type="checkbox" id="st2">Du lịch</label>
+                    <label for="st3"><input type="checkbox" id="st3">Đọc sách</label>
+                    <label for="st4"><input type="checkbox" id="st4">Sống ở nước ngoài</label>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <label for="">Ghi chú:</label>
+                <textarea name="" id="" cols="30" rows="5" class="f-ctrl"></textarea>
+            </div>
+            <div class="form-group" id="btn-zone">
+                <button class="f-btn" type="submit">Đăng ký</button>
+                <button class="f-btn" type="reset">Nhập lại</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

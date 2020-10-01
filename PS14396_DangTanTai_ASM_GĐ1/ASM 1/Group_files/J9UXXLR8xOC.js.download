@@ -1,0 +1,843 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["I7olu"]); }
+
+__d("FBRTCDismissReason",[],(function(a,b,c,d,e,f){e.exports={CALL_ENDED:0,ANSWERED_ON_ANOTHER_DEVICE:1,IN_ANOTHER_CALL:2,CONNECTION_DROPPED:3,REJECTED_ON_ANOTHER_DEVICE:4,REMOVED_BY_PARTICIPANT:5,REJECTED_BY_CALLEE:6,INTERNAL_ERROR:7,CALL_ENDED_BY_PRODUCT:9,JOIN_APPROVAL_DENIED:10,JOIN_APPROVAL_TIMEDOUT:11,UNSUPPORTED_VERSION:12,LIVE_NOT_ACKED:13}}),null);
+__d("FBRTCHangupReason",[],(function(a,b,c,d,e,f){e.exports={IGNORE_CALL:0,HANGUP_CALL:1,NO_ANSWER_TIMEOUT:2,CLIENT_ERROR:3,IN_ANOTHER_CALL:4,CLIENT_INTERRUPTED:5,SESSION_MIGRATED:6}}),null);
+__d("FBRTCRtcResponseStatusCode",[],(function(a,b,c,d,e,f){e.exports={OK:200,BAD_REQUEST:400,UNAUTHORIZED:401,NOT_FOUND:404,METHOD_NOT_ALLOWED:406,CONFLICT:409,CONDITIONAL_REQUEST_FAILED:412,SERVER_INTERNAL_ERROR:500,SERVICE_UNAVAILABLE:503}}),null);
+__d("ChromeExtensionInstallError",[],(function(a,b,c,d,e,f){"use strict";a=function(a){babelHelpers.inheritsLoose(b,a);function b(b,c,d){var e;e=a.call(this,b)||this;e.message=b;e.$ChromeExtensionInstallError3=b;e.$ChromeExtensionInstallError1=d;e.$ChromeExtensionInstallError2=c;e.name=e.constructor.name;return e}var c=b.prototype;c.toString=function(){return this.name+": "+[this.message,this.$ChromeExtensionInstallError2,this.$ChromeExtensionInstallError1].join("-")};c.getTypedMessage=function(){return this.$ChromeExtensionInstallError3};c.getInstallType=function(){return this.$ChromeExtensionInstallError2};return b}(babelHelpers.wrapNativeSuper(Error));e.exports=a}),null);
+__d("RTCChromeExtensionListener",["DateConsts","EventEmitter"],(function(a,b,c,d,e,f){"use strict";a=b("DateConsts").MS_PER_SEC;var g=a;c=function(a){babelHelpers.inheritsLoose(b,a);function b(b){var c;c=a.call(this)||this;c.$RTCChromeExtensionListener1=!1;c.$RTCChromeExtensionListener2=null;c.$RTCChromeExtensionListener5=function(a){var b=a;if(a.type==="notificationButtonClicked"){var d=a.buttonIndex;a=a.notificationId;d!==0&&d!==1&&(b={type:"notificationClicked",notificationId:a})}c.emit(b.type,b)};c.$RTCChromeExtensionListener6=function(a){a.onMessage.removeListener(c.$RTCChromeExtensionListener5),c.$RTCChromeExtensionListener2=null,c.emit("portDisconnected"),c.$RTCChromeExtensionListener1===!1&&c.$RTCChromeExtensionListener7(g)};c.$RTCChromeExtensionListener3=b;return c}var c=b.prototype;c.$RTCChromeExtensionListener4=function(){if(this.$RTCChromeExtensionListener2==null)try{var a=window.chrome.runtime.connect(this.$RTCChromeExtensionListener3,{name:"notifications"});a.onMessage.addListener(this.$RTCChromeExtensionListener5);a.onDisconnect.addListener(this.$RTCChromeExtensionListener6);this.$RTCChromeExtensionListener2=a;this.emit("portConnected")}catch(a){this.emit("portConnectionError",a)}};c.$RTCChromeExtensionListener7=function(a){var b=this;a===void 0&&(a=10);window.setTimeout(function(){b.$RTCChromeExtensionListener4()},a)};c.connect=function(){this.$RTCChromeExtensionListener7()};c.disconnect=function(){this.$RTCChromeExtensionListener2!=null&&(this.$RTCChromeExtensionListener1=!0,this.$RTCChromeExtensionListener2.disconnect(),this.$RTCChromeExtensionListener2=null)};return b}(b("EventEmitter"));e.exports=c}),null);
+__d("RTCChromeScreenSharingExtension",["Promise","RTCChromeExtensionListener","URI","gkx","isInternalFBURI","isInternURI","isWorkplaceDotComURI","uuid"],(function(a,b,c,d,e,f){var g;function a(){var a=(g||(g=b("URI"))).getRequestURI();return b("gkx")("1290293")&&(b("isInternURI")(a)||b("isInternalFBURI")(a))}function c(){return b("isWorkplaceDotComURI")((g||(g=b("URI"))).getRequestURI())}var h="ncfpggehkhmjpdjpefomjchjafhmbnai",i="flakgngfgjpjpfjknnkcipdebaigofln",j="hmobhiioligjpeieihehfjlkmmkjemfl";j=c()===!0?j:h;function k(a,c){return new(b("Promise"))(function(b,d){window.chrome.runtime.sendMessage(c,a,function(a){if(a!=null)typeof a==="object"&&a.type==="error"?d(new Error(a.message)):b(a);else{a=window.chrome.runtime.lastError.message;d(new Error(a))}})})}function d(a){return new(b("RTCChromeExtensionListener"))(a)}function f(a,b){b===void 0&&(b=["screen","window","tab"]);return k({type:"getStreamID",sources:b},a)}function l(a,b){return k({type:"cancel",requestID:a},b)}function m(){return b("uuid")()}e.exports={EXTENSION_ID:j,INTERN_EXTENSION_ID:i,connectToNotifications:d,generateNotificationID:m,getMediaSourceFromExtension:f,sendExtensionRequest:k,shoulUseInternExtension:a,shoulUseWorkplaceExtension:c,stopExtensionScreenSharing:l}}),null);
+__d("ScreenSharingExtensionInstallationTypedLogger",["Banzai","GeneratedLoggerUtils","nullthrows"],(function(a,b,c,d,e,f){"use strict";a=function(){function a(){this.$1={}}var c=a.prototype;c.log=function(){b("GeneratedLoggerUtils").log("logger:ScreenSharingExtensionInstallationLoggerConfig",this.$1,b("Banzai").BASIC)};c.logVital=function(){b("GeneratedLoggerUtils").log("logger:ScreenSharingExtensionInstallationLoggerConfig",this.$1,b("Banzai").VITAL)};c.logImmediately=function(){b("GeneratedLoggerUtils").log("logger:ScreenSharingExtensionInstallationLoggerConfig",this.$1,{signal:!0})};c.clear=function(){this.$1={};return this};c.getData=function(){return babelHelpers["extends"]({},this.$1)};c.updateData=function(a){this.$1=babelHelpers["extends"]({},this.$1,a);return this};c.setExtensionID=function(a){this.$1.extension_id=a;return this};c.setFailReason=function(a){this.$1.fail_reason=a;return this};c.setInstallEvent=function(a){this.$1.install_event=a;return this};c.setSourceApp=function(a){this.$1.source_app=a;return this};c.setTime=function(a){this.$1.time=a;return this};c.setType=function(a){this.$1.type=a;return this};c.setURIPath=function(a){this.$1.uri_path=a;return this};c.setVC=function(a){this.$1.vc=a;return this};c.setWeight=function(a){this.$1.weight=a;return this};return a}();c={extension_id:!0,fail_reason:!0,install_event:!0,source_app:!0,time:!0,type:!0,uri_path:!0,vc:!0,weight:!0};e.exports=a}),null);
+__d("CollabRTCChromeScreenSharingExtension",["invariant","Promise","regeneratorRuntime","ChromeExtensionInstallError","DateConsts","RTCChromeScreenSharingExtension","ScreenSharingExtensionInstallationTypedLogger","URI","isFacebookURI"],(function(a,b,c,d,e,f,g){"use strict";var h;a=b("DateConsts").MS_PER_MIN;var i=(c=b("RTCChromeScreenSharingExtension")).EXTENSION_ID,j=c.INTERN_EXTENSION_ID,k=c.generateNotificationID,l=c.getMediaSourceFromExtension,m=c.sendExtensionRequest,n=c.shoulUseInternExtension;d=c.shoulUseWorkplaceExtension;var o=c.stopExtensionScreenSharing,p="DIALOG_USER_CANCEL",q="EXTENSION_NOT_FOUND",r="MESSAGESENDER_TAB_UNDEFINED",s="REQUEST_ID_UNDEFINED",t="UNEXPECTED_ERROR";f="data-fb-only-screensharing-extension-available";var u="data-intern-screensharing-extension-available";c="data-wp-screensharing-extension-available";var v=d()?c:f,w=250,x=2*a,y=2;d=function(){function a(){this.DIALOG_USER_CANCEL=p,this.EXTENSION_NOT_FOUND=q,this.MESSAGESENDER_TAB_UNDEFINED=r,this.REQUEST_ID_UNDEFINED=s,this.UNEXPECTED_ERROR=t,this.$2=i,this.$3=v}var c=a.prototype;c.isInstalled=function(){var a=document;a=a.documentElement;if(n()&&(a!=null&&a.hasAttribute(u))){this.$2=j;this.$3=u;return!0}return a!=null&&a.hasAttribute(this.$3)?!0:!1};c.throwIfNotInstalled=function(){if(this.isInstalled()!==!0)throw new Error(q)};c.$4=function(a,c){var d=this,e=(c=a)!=null?(c=c.chrome)!=null?c.webstore:c:c;if(e==null)return b("Promise").reject(new(b("ChromeExtensionInstallError"))("CHROME_WEBSTORE_UNDEFINED","inline"));var f=window.document.documentElement;z(this.getExtensionURL(),window.document);a!==window&&z(this.getExtensionURL(),a.document);return new(b("Promise"))(function(a,c){e.install(d.getExtensionURL(),function(){f!=null&&f.setAttribute(d.getPresenseAttr(),"true"),a()},function(a,d){c(new(b("ChromeExtensionInstallError"))("EXTENSION_INSTALL_FAILED","inline",d))})}).then(function(){d.$5(y);return"inline"})};c.$6=function(a){var c=this;if(this.isInstalled())return b("Promise").resolve("store");z(this.getExtensionURL(),window.document);window.open(this.getExtensionURL(),"_blank");return this.$5(x/w).then(function(){var a=window.document.documentElement;a.setAttribute(c.getPresenseAttr(),"true");return"store"})["catch"](function(){throw new(b("ChromeExtensionInstallError"))("EXTENSION_STORE_INSTALL_TIMEOUT","store")})};c.getPresenseAttr=function(){return this.$3};c.isInlineInstallCapableDomain=function(){return b("isFacebookURI")((h||(h=b("URI"))).getRequestURI())};c.install=function(a){var c=this;if(this.isInstalled())return b("Promise").resolve();new(b("ScreenSharingExtensionInstallationTypedLogger"))().setInstallEvent("started").setExtensionID(this.$2).setSourceApp(a).log();return this.$7(a).then(function(d){new(b("ScreenSharingExtensionInstallationTypedLogger"))().setInstallEvent("installed").setExtensionID(c.$2).setType(d).setSourceApp(a).setURIPath((h||(h=b("URI"))).getRequestURI().getPath()).log()})["catch"](function(d){new(b("ScreenSharingExtensionInstallationTypedLogger"))().setInstallEvent("failed").setExtensionID(c.$2).setFailReason(d.getTypedMessage()).setType(d.getInstallType()).setSourceApp(a).setURIPath((h||(h=b("URI"))).getRequestURI().getPath()).log();throw d})};c.$7=function(a){var b;if(!this.isInlineInstallCapableDomain())return this.$6(a);b=(b=window)!=null?(b=b.chrome)!=null?b.webstore:b:b;if(b==null)return this.$6(a);return window.opener?this.$6(a):this.$4(window,a)};c.getSourceID=function(a){var c;return b("regeneratorRuntime").async(function(d){while(1)switch(d.prev=d.next){case 0:if(this.isInstalled()){d.next=2;break}throw new Error(q);case 2:d.next=4;return b("regeneratorRuntime").awrap(l(this.$2,a));case 4:c=d.sent;d.t0=c.type;d.next=d.t0==="streamID"?8:d.t0==="canceledGetStreamID"?10:11;break;case 8:this.$1=c.requestID;return d.abrupt("return",c.streamID);case 10:throw new Error(p);case 11:throw new Error(t);case 12:case"end":return d.stop()}},null,this)};c.getExtensionID=function(){return this.$2};c.getExtensionURL=function(){return"https://chrome.google.com/webstore/detail/"+this.$2};c.stop=function(){return b("regeneratorRuntime").async(function(a){while(1)switch(a.prev=a.next){case 0:a.next=2;return b("regeneratorRuntime").awrap(o(this.$1,this.$2));case 2:this.$1=null;case 3:case"end":return a.stop()}},null,this)};c.$5=function(a){var b=this;return m({type:"ping"},this.$2)["catch"](function(c){if(a<1)throw c;return A(w).then(function(){return b.$5(a-1)})})};c.isMinimumVersionNumber=function(a,c,d){var e,f,g,h,i,j;return b("regeneratorRuntime").async(function(k){while(1)switch(k.prev=k.next){case 0:this.throwIfNotInstalled();k.next=3;return b("regeneratorRuntime").awrap(m({type:"ping"},this.$2));case 3:e=k.sent;f=e.version;g=f.split(".").map(function(a){return parseInt(a,10)}),h=g[0],i=g[1],j=g[2];if(!(h>=a)){k.next=10;break}if(!(i>c)){k.next=9;break}return k.abrupt("return",!0);case 9:return k.abrupt("return",i===c&&j>=d);case 10:return k.abrupt("return",!1);case 11:case"end":return k.stop()}},null,this)};c.focusTabAndWindow=function(){var a;return b("regeneratorRuntime").async(function(c){while(1)switch(c.prev=c.next){case 0:this.throwIfNotInstalled();c.next=3;return b("regeneratorRuntime").awrap(m({type:"focusTabAndWindow"},this.$2));case 3:a=c.sent;return c.abrupt("return",{tab:a.tab,window:a.window});case 5:case"end":return c.stop()}},null,this)};c.getLastFocusedWindow=function(a){var c;return b("regeneratorRuntime").async(function(d){while(1)switch(d.prev=d.next){case 0:this.throwIfNotInstalled();d.next=3;return b("regeneratorRuntime").awrap(m({type:"getLastFocusedWindow",getInfo:a},this.$2));case 3:c=d.sent;return d.abrupt("return",c.window);case 5:case"end":return d.stop()}},null,this)};c.getTabForSender=function(){var a;return b("regeneratorRuntime").async(function(c){while(1)switch(c.prev=c.next){case 0:this.throwIfNotInstalled();c.next=3;return b("regeneratorRuntime").awrap(m({type:"getTabForSender"},this.$2));case 3:a=c.sent;return c.abrupt("return",a.tab);case 5:case"end":return c.stop()}},null,this)};c.getTabAndWindowForSender=function(){var a;return b("regeneratorRuntime").async(function(c){while(1)switch(c.prev=c.next){case 0:this.throwIfNotInstalled();c.next=3;return b("regeneratorRuntime").awrap(m({type:"getTabAndWindowForSender"},this.$2));case 3:a=c.sent;return c.abrupt("return",{tab:a.tab,window:a.window});case 5:case"end":return c.stop()}},null,this)};c.getWindow=function(a,c){var d;return b("regeneratorRuntime").async(function(e){while(1)switch(e.prev=e.next){case 0:this.throwIfNotInstalled();e.next=3;return b("regeneratorRuntime").awrap(m({type:"getWindow",windowId:a,getInfo:c},this.$2));case 3:d=e.sent;return e.abrupt("return",d.window);case 5:case"end":return e.stop()}},null,this)};c.updateTab=function(a,c){var d,e;return b("regeneratorRuntime").async(function(f){while(1)switch(f.prev=f.next){case 0:this.throwIfNotInstalled();d={type:"updateTab",updateProperties:a};c!==void 0&&(d.tabId=c);f.next=5;return b("regeneratorRuntime").awrap(m(d,this.$2));case 5:e=f.sent;return f.abrupt("return",e.tab);case 7:case"end":return f.stop()}},null,this)};c.updateWindow=function(a,c){var d;return b("regeneratorRuntime").async(function(e){while(1)switch(e.prev=e.next){case 0:this.throwIfNotInstalled();e.next=3;return b("regeneratorRuntime").awrap(m({type:"updateWindow",windowId:a,updateInfo:c},this.$2));case 3:d=e.sent;return e.abrupt("return",d.window);case 5:case"end":return e.stop()}},null,this)};c.clearNotification=function(a){var c,d;return b("regeneratorRuntime").async(function(e){while(1)switch(e.prev=e.next){case 0:e.next=2;return b("regeneratorRuntime").awrap(this.isNotificationPermissionGranted());case 2:c=e.sent;if(!(c===!1)){e.next=5;break}throw new Error("Chrome extension notifications permission not granted");case 5:e.next=7;return b("regeneratorRuntime").awrap(m({type:"clearNotification",notificationId:a},this.$2));case 7:d=e.sent;return e.abrupt("return",d.wasCleared);case 9:case"end":return e.stop()}},null,this)};c.createNotification=function(a){var c,d;return b("regeneratorRuntime").async(function(e){while(1)switch(e.prev=e.next){case 0:e.next=2;return b("regeneratorRuntime").awrap(this.isNotificationPermissionGranted());case 2:c=e.sent;if(!(c===!1)){e.next=5;break}throw new Error("Chrome extension notifications permission not granted");case 5:e.next=7;return b("regeneratorRuntime").awrap(m({type:"createNotification",notificationId:k(),options:a},this.$2));case 7:d=e.sent;return e.abrupt("return",d.notificationId);case 9:case"end":return e.stop()}},null,this)};c.getAllNotifications=function(){var a,c;return b("regeneratorRuntime").async(function(d){while(1)switch(d.prev=d.next){case 0:d.next=2;return b("regeneratorRuntime").awrap(this.isNotificationPermissionGranted());case 2:a=d.sent;if(!(a===!1)){d.next=5;break}throw new Error("Chrome extension notifications permission not granted");case 5:d.next=7;return b("regeneratorRuntime").awrap(m({type:"getAllNotifications"},this.$2));case 7:c=d.sent;return d.abrupt("return",Object.keys(c.notifications));case 9:case"end":return d.stop()}},null,this)};c.getNotificationsPermissionLevel=function(){var a;return b("regeneratorRuntime").async(function(c){while(1)switch(c.prev=c.next){case 0:this.throwIfNotInstalled();c.next=3;return b("regeneratorRuntime").awrap(m({type:"getNotificationsPermissionLevel"},this.$2));case 3:a=c.sent;return c.abrupt("return",a.level);case 5:case"end":return c.stop()}},null,this)};c.updateNotification=function(a,c){var d,e;return b("regeneratorRuntime").async(function(f){while(1)switch(f.prev=f.next){case 0:f.next=2;return b("regeneratorRuntime").awrap(this.isNotificationPermissionGranted());case 2:d=f.sent;if(!(d===!1)){f.next=5;break}throw new Error("Chrome extension notifications permission not granted");case 5:f.next=7;return b("regeneratorRuntime").awrap(m({type:"updateNotification",notificationId:a,options:c},this.$2));case 7:e=f.sent;return f.abrupt("return",e.wasUpdated);case 9:case"end":return f.stop()}},null,this)};c.isNotificationPermissionGranted=function(){var a;return b("regeneratorRuntime").async(function(c){while(1)switch(c.prev=c.next){case 0:a="denied";c.prev=1;c.next=4;return b("regeneratorRuntime").awrap(this.getNotificationsPermissionLevel());case 4:a=c.sent;c.next=10;break;case 7:c.prev=7,c.t0=c["catch"](1),a="denied";case 10:c.t1=a;c.next=c.t1==="granted"?13:c.t1==="denied"?14:15;break;case 13:return c.abrupt("return",!0);case 14:return c.abrupt("return",!1);case 15:throw new Error("Received an unexpected permission level: "+a);case 16:case"end":return c.stop()}},null,this,[[1,7]])};return a}();function z(a,b){var c="chrome-webstore-item";if(!b.querySelector('link[href="'+a+'"][rel="'+c+'"]')){var d=b.createElement("link");d.setAttribute("href",a);d.setAttribute("rel",c);b.head!=null||g(0,6240);b.head.appendChild(d)}}function A(a){return new(b("Promise"))(function(b){return window.setTimeout(b,a)})}e.exports=new d()}),null);
+__d("CollabRTCChromeScreenSharing",["CollabRTCChromeScreenSharingExtension"],(function(a,b,c,d,e,f){"use strict";a={focusTabAndWindow:function(){return b("CollabRTCChromeScreenSharingExtension").focusTabAndWindow()},getLastFocusedWindow:function(a){return b("CollabRTCChromeScreenSharingExtension").getLastFocusedWindow(a)},getTabForSender:function(){return b("CollabRTCChromeScreenSharingExtension").getTabForSender()},getTabAndWindowForSender:function(){return b("CollabRTCChromeScreenSharingExtension").getTabAndWindowForSender()},getWindow:function(a,c){return b("CollabRTCChromeScreenSharingExtension").getWindow(a,c)},getSourceID:function(a,c){return b("CollabRTCChromeScreenSharingExtension").install(c).then(function(){return b("CollabRTCChromeScreenSharingExtension").getSourceID(a)})},stop:function(){return b("CollabRTCChromeScreenSharingExtension").stop()},updateTab:function(a,c){return b("CollabRTCChromeScreenSharingExtension").updateTab(a,c)},updateWindow:function(a,c){return b("CollabRTCChromeScreenSharingExtension").updateWindow(a,c)}};e.exports=a}),null);
+__d("FBRTCUtils",["AsyncRequest","FBIDCheck","FBRTCConfig","RTCConfig","RTWebUserActionLogger","assignMediaStream","emptyFunction"],(function(a,b,c,d,e,f){var g=6e3,h="setSinkId"in window.HTMLMediaElement.prototype;a={attachMediaStream:function(a,c){if(a==null)return;b("assignMediaStream")(a,c);if(c){c=a.play();c!==void 0&&c["catch"](function(a){b("RTWebUserActionLogger").logError({errorDomain:"autoplay was prevented",errorType:a.toString()})})}},aboutEqual:function(a,b){return a-b<.01&&b-a<.01},sendServerRequest:function(a,c,d,e,f,h){c===void 0&&(c=b("emptyFunction"));d===void 0&&(d=b("emptyFunction"));e===void 0&&(e=!1);f===void 0&&(f=g);h===void 0&&(h={});a=new(b("AsyncRequest"))().setURI(a).setData(h).setAllowCrossPageTransition(!0).setHandler(c).setErrorHandler(d).setTimeoutHandler(f,function(){d()});e&&a.setOption("asynchronous_DEPRECATED",!1);a.send()},supportsSetSink:function(){return h},isPeerVCEndpoint:function(a){var c=b("FBRTCConfig").isVCEndpointCall();return c!==void 0?c:!!a&&!b("FBIDCheck").isUser_deprecated(a)&&b("RTCConfig").CollabVCEndpointsVideoCallGK},isCollabTrigger:function(a){return a==="quickdial"||a==="meeting_room_page_profile"}};e.exports=a}),null);
+__d("RTCEndCallReason",["FBRTCConstants","FBRTCDismissReason","FBRTCHangupReason","FBRTCRtcResponseStatusCode","RTWebStrings"],(function(a,b,c,d,e,f){"use strict";var g=b("FBRTCConstants").CallEndReason,h=b("FBRTCConstants").CollabCallEndSubreason;a=function(){function a(a){this.$3="local",typeof a==="string"||a instanceof String?this.$1=b("FBRTCConstants").endCallReasonFromString(a):this.$1=a}var c=a.prototype;c.setSubreason=function(a){this.$2=a;return this};c.getSubreason=function(){return this.$2};c.setRemoteEnded=function(a){this.$3=a?"remote":"local";return this};c.getRemoteEnded=function(){return this.$3==="remote"};c.toStrName=function(a){a===void 0&&(a=!0);return a?this.$4()+"_"+this.$3:this.$4()};c.$4=function(){return b("FBRTCConstants").callEndReasonString(this.$1)};c.getReasonID=function(){return this.$1};c.toString=function(a){var b;a===void 0&&(a=!1);b=((b=this.$5(a))!=null?b:"").toString();return a?b+" "+this.$6():b};c.$5=function(a){switch(this.$1){case g.NO_ANSWER_TIMEOUT:case g.IGNORE_CALL:return b("RTWebStrings").noAnswer;case g.OTHER_NOT_CAPABLE:if(this.$2===h.MCU_INVALID_STREAM_CONFIGURATION)return b("RTWebStrings").invalidStreamConfiguration;case g.INCOMING_TIMEOUT:case g.NO_PERMISSION:case g.OTHER_CARRIER_BLOCKED:return b("RTWebStrings").unreachable;case g.SIGNALING_MESSAGE_FAILED:case g.WEBRTC_ERROR:case g.NO_UI_ERROR:case g.CALLER_NOT_VISIBLE:case g.CLIENT_ERROR:return b("RTWebStrings").callFailed;case g.UNSUPPORTED_VERSION:return b("RTWebStrings").cannotConnect;case g.IN_ANOTHER_CALL:return b("RTWebStrings").inAnotherCall;case g.CARRIER_BLOCKED:return b("RTWebStrings").switchToWiFi;case g.CLIENT_INTERRUPTED:return b("RTWebStrings").callInterrupted;case g.HANGUP_CALL:case g.ACCEPT_AFTER_HANGUP:return a?"":b("RTWebStrings").callEnded;case g.CONNECTION_DROPPED:return b("RTWebStrings").connectionLost;case g.OTHER_INSTANCE_HANDLED:return null;case g.CLIENT_ENCRYPTION_ERROR:return b("RTWebStrings").clientEncryptionError;case g.INACTIVE_TIMEOUT:return b("RTWebStrings").inactive;default:return null}};c.$6=function(){var a;if(this.$1!==g.OTHER_NOT_CAPABLE&&this.$1!==g.SIGNALING_MESSAGE_FAILED&&this.$1!==g.HANGUP_CALL&&this.$1!==g.ACCEPT_AFTER_HANGUP)return"";switch(this.$2){case h.REMOTE_PEER_HANGUP:return"Call ended";case h.REMOTE_PEER_REJECT:return"Call declined";case h.CLOSED_BY_MCU:return"Call expired";case h.CLOSED_AS_STALE:return"Server failed, call is stale";case h.CALL_INITIALIZATION_FAILED:return"Call initialization to room failed";case h.SIP_CONNECTION_INITIALIZATION_FAILED:return"No Answer";case h.LOST_MCU_CONNECTION:return"MCU Media connection failed";case h.LOST_MCU_THRIFT_CONNECTION:return"MCU infrastructure dropped connection";case h.LOST_SIP_ADAPTER_CONNECTION:return"SIP infrastructure dropped connection";case h.MCU_NO_AUDIO_STREAM:return"Invalid audio stream";case h.MCU_INVALID_STREAM_CONFIGURATION:return"Invalid stream configuration";case h.INVALID_MEETING_ID:return"Invalid meeting ID";case h.UNKNOWN:default:a=(a=this.$2)!=null?a:"Unknown";return this.$2!=null&&this.$2!==""?"Unexpected call failure: "+a:"Call ended"}};a.fromHangupReason=function(c){switch(c){case b("FBRTCHangupReason").IGNORE_CALL:return new a(g.IGNORE_CALL);case b("FBRTCHangupReason").NO_ANSWER_TIMEOUT:return new a(g.NO_ANSWER_TIMEOUT);case b("FBRTCHangupReason").HANGUP_CALL:return new a(g.HANGUP_CALL);case b("FBRTCHangupReason").CLIENT_ERROR:return new a(g.CLIENT_ERROR);case b("FBRTCHangupReason").IN_ANOTHER_CALL:return new a(g.IN_ANOTHER_CALL);case b("FBRTCHangupReason").CLIENT_INTERRUPTED:return new a(g.CLIENT_INTERRUPTED);default:return new a(g.HANGUP_CALL)}};a.subreasonFromDismissRequest=function(a){if(!a)return null;switch(a.reason){case b("FBRTCDismissReason").REMOVED_BY_PARTICIPANT:return"REMOVED_BY_PARTICIPANT";default:return null}};a.fromDismissRequest=function(c){if(!c)return new a(g.HANGUP_CALL);switch(c.reason){case b("FBRTCDismissReason").ANSWERED_ON_ANOTHER_DEVICE:case b("FBRTCDismissReason").REJECTED_ON_ANOTHER_DEVICE:return new a(g.OTHER_INSTANCE_HANDLED);case b("FBRTCDismissReason").CALL_ENDED:return new a(g.HANGUP_CALL);case b("FBRTCDismissReason").IN_ANOTHER_CALL:return new a(g.IN_ANOTHER_CALL);case b("FBRTCDismissReason").CONNECTION_DROPPED:return new a(g.CONNECTION_DROPPED);case b("FBRTCDismissReason").REMOVED_BY_PARTICIPANT:return new a(g.HANGUP_CALL);case b("FBRTCDismissReason").REJECTED_BY_CALLEE:return new a(g.IGNORE_CALL);case b("FBRTCDismissReason").INTERNAL_ERROR:return new a(g.SIGNALING_MESSAGE_FAILED);default:return new a(g.HANGUP_CALL)}};a.fromResponseStatusCode=function(c){switch(c){case b("FBRTCRtcResponseStatusCode").PRECONDITION_FAILURE:case b("FBRTCRtcResponseStatusCode").METHOD_NOT_ALLOWED:case b("FBRTCRtcResponseStatusCode").UNAUTHORIZED:return new a(g.NO_PERMISSION);case b("FBRTCRtcResponseStatusCode").SERVICE_UNAVAILABLE:return new a(g.SIGNALING_MESSAGE_FAILED);case b("FBRTCRtcResponseStatusCode").SERVER_INTERNAL_ERROR:case b("FBRTCRtcResponseStatusCode").BAD_REQUEST:case b("FBRTCRtcResponseStatusCode").BUSY_HERE:case b("FBRTCRtcResponseStatusCode").CONDITIONAL_REQUEST_FAILED:case b("FBRTCRtcResponseStatusCode").NOT_FOUND:return new a(g.CLIENT_ERROR);default:return new a(g.HANGUP_CALL)}};return a}();e.exports=a}),null);
+__d("ZenonExperiments",["gkx","qex"],(function(a,b,c,d,e,f){"use strict";function g(){var a=b("qex")._("1380106"),c=b("qex")._("1380107"),d=b("qex")._("1380108");return k(a,c,d)}function a(a){var c,d=(c=b("qex"))._("1456522"),e=c._("1456523"),f=c._("1459011"),g=c._("1457254");c=c._("1459012");d===!0&&(a.autoGainControl=!1);e===!0&&(a.googEchoCancellation=!0,a.googAutoGainControl=!0,a.googNoiseSuppression=!0,a.googHighpassFilter=!0);f===!0&&(a.googAutoGainControl2=!0);g===!0&&(a.googNoiseSuppression2=!0);c===!0&&(a.googEchoCancellation2=!0);return a}function h(){var a=b("qex")._("1426250"),c=b("qex")._("1426251"),d=b("qex")._("1426252");return k(a,c,d)}function i(){var a=navigator.userAgent,b=["Pixel 3"];for(var c=0;c<b.length;c++){var d=b[c];if(a.includes(d))return 64}return 0}function j(a,b){if(b>0&&a>0){var c=Math.max(1,a/b);return b*Math.round(c)}return a}function k(a,b,c){if(a==null||b==null||c==null)return null;var d=i();a=j(a,d);b=j(b,d);d=a/b;return{width:{ideal:a},height:{ideal:b},aspectRatio:{ideal:d},frameRate:{ideal:c}}}function c(){return b("qex")._("1380109")?g():null}function d(){return b("qex")._("1380110")?g():null}function f(){return b("qex")._("1426253")?h():null}function l(){var a=b("qex")._("1419919"),c=b("qex")._("1419920"),d=b("qex")._("1419921");if(a==null||c==null||d==null){var e=b("qex")._("1494515"),f=b("qex")._("1494516"),g=b("qex")._("1494517");return k(e,f,g)}return k(a,c,d)}c={getNetworkMonitorRttThreshold:function(){return b("qex")._("1064197")},getNetworkMonitorPacketLossRateThreshold:function(){return b("qex")._("1064198")},getMediaMetricParserPollingRate:function(){return b("qex")._("1064222")},shouldUseM4Buttons:function(){return b("gkx")("1376351")},shouldUseM4DominantView:function(){return b("gkx")("1369511")},displayUnifiedCallState:function(){var a;return(a=b("qex")._("1160100"))!=null?a:!1},displayNewLayoutAndDarkTheme:function(){return b("gkx")("1376351")},shouldUseChatInGroupCalls:function(){var a;return(a=b("qex")._("1262170"))!=null?a:!1},screenShareWithReplaceTrack:function(){return b("gkx")("1369511")||b("gkx")("1428146")},blockMuteWhileConnecting:function(){return b("gkx")("1410739")},subscribeOnlyToDominantSpeaker:function(){return b("gkx")("1418022")},subscribeOnlyWhenVisible:function(){return b("gkx")("1442468")},shouldEnableProvisionalRinging:function(){var a;return(a=b("qex")._("1454772"))!=null?a:!1},getP2PVideoConstraints:c,getMWVideoConstraints:d,getMWebVideoConstraints:l,getMWVideoConstraintsRooms:f,getExtraAudioConstraints:a,alignTo:j};e.exports=c}),null);
+__d("RTCUserMediaConstraints",["FBRTCConstants","FBRTCSupport","RTCConfig","ZenonExperiments"],(function(a,b,c,d,e,f){"use strict";a=b("FBRTCConstants").RTCConstraints;var g=b("FBRTCConstants").VideoQuality,h={width:a.FHD_WIDTH,height:a.FHD_HEIGHT,frameRate:a.FRAME_RATE},i={width:a.HD_WIDTH,height:a.HD_HEIGHT,frameRate:a.FRAME_RATE},j={width:a.SD_WIDTH,height:a.SD_HEIGHT,frameRate:a.FRAME_RATE},k={width:a.LQ_WIDTH,height:a.LQ_HEIGHT,frameRate:a.LQ_FRAME_RATE},l={audio:function(a){return a?{deviceId:{exact:a}}:!0},video:function(a,c,d){d===void 0&&(d=b("RTCConfig").CollaborationCallQuality.videoToRoom);c=c?{deviceId:{exact:c}}:null;if(a===g.CUSTOM_VIDEO)return babelHelpers["extends"]({},d,c);if(b("FBRTCSupport").isMobileDevice())return m(b("ZenonExperiments").getP2PVideoConstraints());d=o(a);a=n(a)?k:q(d);return babelHelpers["extends"]({width:p(d,"width",a),height:p(d,"height",a),frameRate:p(d,"frameRate",{frameRate:10})},c)},chromeMediaSource:function(a,b){a=a.video;a=l.chromify(a);if(typeof a!=="object")return{audio:!1,video:Boolean(a)};var c=a.mandatory;a=a.optional;a=a===void 0?[]:a;return{audio:!1,video:{mandatory:babelHelpers["extends"]({},c,{chromeMediaSource:"desktop",chromeMediaSourceId:b}),optional:[{googTemporalLayeredScreencast:!0}].concat(a)}}},chromify:function(a,b){if(!a||typeof a!=="object")return Boolean(a);if(!t(a))return a;b=b?b.optionalConstraintsOnly:!1;var c=a.mandatory;c=c===void 0?{}:c;var d=a.optional;d=d===void 0?[]:d;var e=Object.entries(a);for(var f=0;f<e.length;f++){var g=e[f],h=g[0];g=g[1];if(h==="require"||h==="advanced"||h==="mediaSource")continue;g=g&&typeof g==="object"?g:{ideal:g};Number.isFinite(g.exact)&&(g.min=g.exact,g.max=g.exact);var i=g.ideal,j=g.exact;if(i!==void 0)if(Number.isFinite(i)){var k;d.push((k={},k[s(h,"min")]=i,k),(k={},k[s(h,"max")]=i,k))}else{d.push((k={},k[s(h)]=i,k))}if(!b)if(j!==void 0&&!Number.isFinite(j))c[s(h)]=j;else{i=["min","max"];for(var k=0;k<i.length;k++){j=i[k];Number.isFinite(g[j])&&(c[s(h,j)]=g[j])}}}a.advanced&&d.push.apply(d,a.advanced);j={};Object.keys(c).length>0?j.mandatory=c:b&&(j.mandatory={});d.length>0&&(j.optional=d);return j}};function m(a){if(a===null)return{};var b={};b.width=a==null?void 0:a.width;b.height=a==null?void 0:a.height;b.aspectRatio=a==null?void 0:a.aspectRatio;b.frameRate=a==null?void 0:a.frameRate;b.facingMode={ideal:"user"};return b}function n(a){return a===g.HD_IDEAL_LQ_REQUIRED_VIDEO||a===g.FHD_IDEAL_LQ_REQUIRED_VIDEO}function o(a){switch(a){case g.FHD_VIDEO:case g.FHD_IDEAL_LQ_REQUIRED_VIDEO:return h;case g.HD_VIDEO:case g.HD_IDEAL_LQ_REQUIRED_VIDEO:return i;case g.LQ_VIDEO:return k;case g.SD_VIDEO:return j;default:return i}}function p(a,b,c){c===void 0&&(c=q(a));var d=a[b];return{min:Math.min(c[b],d),max:Math.max(r(a)[b],d),ideal:d}}function q(a){switch(a){case h:return i;case i:return j;case j:case k:default:return k}}function r(a){switch(a){case k:return j;case j:return i;case i:case h:default:return h}}function s(b,a){return a?""+a+b.charAt(0).toUpperCase()+b.slice(1):b==="deviceId"?"sourceId":b}function t(a){return Object.keys(a).some(function(a){return a!=="mandatory"&&a!=="optional"})}e.exports=l}),null);
+__d("RTCAudioTrackNoiseDetector",["invariant","Promise","MediaStream"],(function(a,b,c,d,e,f,g){"use strict";var h="audio track with absolute silence",i="audio track data timeout",j='wrong track type, expected "audio"',k=100;a={ABSOLUTE_SILENCE_ERROR:h,DATA_TIMEOUT_ERROR:i,WRONG_TRACK_TYPE_ERROR:j,detect:function(a,c){if("kind"in a&&a.kind!=="audio")return b("Promise").reject(new Error(j));var d=new(b("MediaStream"))();d.addTrack(a);var e=new AudioContext(),f=e.createMediaStreamSource(d),l=e.createScriptProcessor(0,1,1),m=k,n=function(){l!=null||g(0,2865);l.onaudioprocess=null;l.disconnect();l=null;f!=null||g(0,2866);f.disconnect();f=null;d!=null||g(0,2867);d.removeTrack(a);d=null;e!=null||g(0,2868);return b("Promise").resolve(e.close())["catch"](function(){return b("Promise").resolve()}).then(function(){e=null})};return b("Promise").race([new(b("Promise"))(function(a,b){l!=null||g(0,2865),l.onaudioprocess=function(c){c=c.inputBuffer;for(var c=c.getChannelData(0),d=Array.isArray(c),e=0,c=d?c:c[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var f;if(d){if(e>=c.length)break;f=c[e++]}else{e=c.next();if(e.done)break;f=e.value}f=f;if(f!==0){a();return}}m>0?m--:b(new Error(h))},f!=null||g(0,2866),f.connect(l),e!=null||g(0,2868),l.connect(e.destination)}),new(b("Promise"))(function(a){return window.setTimeout(a,c)}).then(function(){throw new Error(i)})]).then(function(){return n()})["catch"](function(a){return n().then(function(){throw a})})}};e.exports=a}),null);
+__d("RTCVideoTrackActivityDetector",["invariant","Promise","MediaStream","assignMediaStream"],(function(a,b,c,d,e,f,g){"use strict";var h="video track playback timeout",i="unexpected video track ready state",j='wrong track type, expected "video"';a={PLAYBACK_TIMEOUT_ERROR:h,WRONG_READY_STATE_ERROR:i,WRONG_TRACK_TYPE_ERROR:j,detect:function(a,c){if("kind"in a&&a.kind!=="video")return b("Promise").reject(new Error(j));var d=document.createElement("video");d.muted=!0;var e=new(b("MediaStream"))();e.addTrack(a);var f,k=null,l=function(){window.clearInterval(k),d&&(d.pause(),b("assignMediaStream")(d,null),d.removeEventListener("timeupdate",f),d=null),e&&(e.removeTrack(a),e=null)};return b("Promise").race([new(b("Promise"))(function(c,h){d!=null||g(0,5995),b("assignMediaStream")(d,e),f=function(b){d!=null||g(0,5995),d.currentTime>0&&(a.readyState==="live"?(c(),l()):h(new Error(i)))},b("Promise").resolve(d.pause()).then(function(){d!=null||g(0,5995);return d.play()}).then(function(){f(),d!=null||g(0,5995),d.addEventListener("timeupdate",f),k=window.setInterval(f,50)})["catch"](function(a){return h(a)})}),new(b("Promise"))(function(a){return window.setTimeout(a,c)}).then(function(){throw new Error(h)})])["catch"](function(a){l();throw a})}};e.exports=a}),null);
+__d("RTCMediaStreamValidator",["Promise","RTCAudioTrackNoiseDetector","RTCVideoTrackActivityDetector"],(function(a,b,c,d,e,f){"use strict";var g="no audio tracks",h="no video tracks",i="too many audio tracks",j="too many video tracks",k="unexpected audio track(s)",l="unexpected video track(s)";a={NO_AUDIO_TRACKS_ERROR:g,NO_VIDEO_TRACKS_ERROR:h,TOO_MANY_AUDIO_TRACKS_ERROR:i,TOO_MANY_VIDEO_TRACKS_ERROR:j,UNEXPECTED_AUDIO_TRACKS_ERROR:k,UNEXPECTED_VIDEO_TRACKS_ERROR:l,validate:function(a,c,d,e){d===void 0&&(d={});e===void 0&&(e={});d=d;var f=d.audio;f=f===void 0?!0:f;d=d.video;d=d===void 0?!0:d;e=e;var g=e.audio;g=g===void 0?1e3:g;e=e.video;e=e===void 0?1e3:e;return b("Promise").all([m(a,c,f,g),n(a,c,d,e)]).then(function(){return a})}};function m(a,c,d,e){var f=a.getAudioTracks();if(!c.audio)return f.length>0?b("Promise").reject(new Error(k)):b("Promise").resolve(a);if(f.length<1)return b("Promise").reject(new Error(g));else if(f.length>1)return b("Promise").reject(new Error(i));return d?b("RTCAudioTrackNoiseDetector").detect(f[0],e).then(function(){return a}):b("Promise").resolve(a)}function n(a,c,d,e){var f=a.getVideoTracks();if(!c.video)return f.length>0?b("Promise").reject(new Error(l)):b("Promise").resolve(a);if(f.length<1)return b("Promise").reject(new Error(h));else if(f.length>1)return b("Promise").reject(new Error(j));return d?b("RTCVideoTrackActivityDetector").detect(f[0],e).then(function(){return a}):b("Promise").resolve(a)}e.exports=a}),null);
+__d("UserMediaRequestError",[],(function(a,b,c,d,e,f){"use strict";a=function(a){babelHelpers.inheritsLoose(b,a);function b(b,c,d){var e;e=a.call(this,c)||this;e.constraint=d;e.nativeErrorName=b;e.message=g(c);e.name=h(b);return e}b.createFromNative=function(a){var c=a.message,d=a.name;a=a.constraint;return new b(d,c,a||"")};var c=b.prototype;c.isRecoverableError=function(){return this.name==="InvalidStateError"?!0:!1};c.getEndCallSubReason=function(){return"MediaFailed: "+this.name+", "+this.constraint};return b}(babelHelpers.wrapNativeSuper(Error));function g(a){switch(a){case"The operation is insecure.":return"The request is not allowed by the user agent or the platform in the current context.";default:return a}}function h(a){switch(a){case"ConstraintNotSatisfiedError":return"OverconstrainedError";case"NO_DEVICES_FOUND":case"DevicesNotFoundError":return"NotFoundError";case"MediaDeviceFailedDueToShutdown":case"MediaDeviceKillSwitchOn":case"TrackStartError":return"NotReadableError";case"PermissionDeniedError":case"PERMISSION_DENIED":case"PermissionDismissedError":return"NotAllowedError";default:return a}}e.exports=a}),null);
+__d("generateRTCTransactionID",["randomInt"],(function(a,b,c,d,e,f){"use strict";function a(){return String(b("randomInt")(0,4294967294)+1)}e.exports=a}),null);
+__d("RTCUtils",["invariant","Promise","CurrentUser","FBLogger","FBRTCConfig","FBRTCLogger","FBRTCUtils","RTCAudioTrackNoiseDetector","RTCConfig","RTCEndCallReason","RTCMediaDevices","RTCMediaStreamValidator","RTCScreenSharing","RTCUser","RTCUserMediaConstraints","RTCVideoTrackActivityDetector","RTWebClientFeatureGating","RTWebUserActionLogger","URI","UserAgent","UserMediaRequestError","generateRTCTransactionID"],(function(a,b,c,d,e,f,g){"use strict";var h,i=b("RTCAudioTrackNoiseDetector").DATA_TIMEOUT_ERROR,j=b("RTCVideoTrackActivityDetector").PLAYBACK_TIMEOUT_ERROR,k={isGroupCall:function(a){return a.split(":")[0]==="GROUP"},isMessengerCall:function(a){return a.split(":")[0]==="MESSENGER"},isRoomCall:function(a){return a.split(":")[0]==="ROOM"},isPeerCall:function(a){return a.split(":")[0]==="PEER"},isAlohaCall:function(a){return a.split(":")[0]==="ALOHA"},isWatchPartyCall:function(a){return a.split(":")[0]==="WATCH"},isSupportedMWCall:function(a){return k.isGroupCall(a)||k.isMessengerCall(a)||k.isRoomCall(a)||k.isAlohaCall(a)||k.isWatchPartyCall(a)},getPeerID:function(a){if(k.isGroupCall(a))throw new Error("Not a P2P call: "+a);a=a.split(":");a=a.slice(1);return a[0]===b("CurrentUser").getID()?a[1]:a[0]},getMessengerCallID:function(a){if(!k.isMessengerCall(a))throw new Error("Not a Messenger call: "+a);return Number(a.split(":")[1])},getThreadID:function(a){return!k.isGroupCall(a)?null:Number(a.split(":")[1])},getSandboxingTierFromURIOrEmpty:function(a,b){b=b+"=";a=a.split(b);if(a[1]){b=a.pop().split("&").shift();return b}return""},createRequestHeader:function(a,c,d,e,f){a={type:a,transactionId:b("generateRTCTransactionID")(),retryCount:0,conferenceName:c,clientSessionId:e?e:""};c={};d&&(a.serverInfoData=d);f&&(c.esc_p2p_call_id=f);if(b("RTWebClientFeatureGating").canUseMultiwaySandbox()){e=window.location.href;d=k.getSandboxingTierFromURIOrEmpty(e,"multiway_www_tier");f=k.getSandboxingTierFromURIOrEmpty(e,"multiway_core_tier");d&&(c.multiwayWwwTier=d);f&&(c.multiwayCoreTier=f)}a.extensions=c;return a},createClientContextMessage:function(a,b){a={num_participants:a,trigger:b};b={header:{topic_DEPRECATED:"client_context",shouldSendToAllUsers:!1},body:{genericMessage:{topic:"client_context",data:JSON.stringify(a)}}};return b},createResponseHeader:function(a,b,c){b={type:a.type,transactionId:a.transactionId,retryCount:0,conferenceName:a.conferenceName,responseStatusCode:b,clientSessionId:c?c:""};a.serverInfoData&&(b.serverInfoData=a.serverInfoData);return b},maybeRemoveVideoConstraint:function(a){return b("RTCMediaDevices").enumerateDevices().then(function(c){if(c.some(function(a){return a.kind==="videoinput"})){b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[maybeRemoveVideoConstraint] At least one device has videoinput.  Keeping constraints "+JSON.stringify(a)});return a}b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[maybeRemoveVideoConstraint] No devices capable of videoinput.",errorDomain:"GetUserMedia",errorType:"Removing video stream by setting video constraint to false."});return babelHelpers["extends"]({},a,{video:!1})})["catch"](function(){return b("Promise").resolve(a)})},getUserMediaWithAudioFallback:function(a,c){return a.video?k.maybeRemoveVideoConstraint(a).then(function(a){return k.getUserMedia(a,c)})["catch"](function(c){if(a.video){if(c.name==="NotFoundError"||c.name==="StreamFailedToStart"){var d="Audio Fallback Error Recovery: "+JSON.stringify(c)+" constraints: "+JSON.stringify(a);b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMediaWithAudioFallback] Retrying getUserMedia with no video stream",errorDomain:"GetUserMedia",errorType:d});return k.getUserMedia({video:!1,audio:a.audio})}if(c.name==="OverconstrainedError"){d="Video Constraints Error Recovery: "+JSON.stringify(c)+" constraints: "+JSON.stringify(a);b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMediaWithAudioFallback] Retrying getUserMedia with no video constraints",errorDomain:"GetUserMedia",errorType:d});return k.getUserMedia({video:!0,audio:a.audio})}}d="Error: "+JSON.stringify(c)+" constraints: "+JSON.stringify(a);b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMediaWithAudioFallback] Throwing other error",errorDomain:"GetUserMedia",errorType:d});throw c}):k.getUserMedia(a,c)},getUserMediaWithFallbackToEmptyVideoConstraints:function(a,c){return k.getUserMedia(a,c)["catch"](function(c){if(a.video&&c.name==="OverconstrainedError"){b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMediaWithFallbackToEmptyVideoConstraints] Fallback getUserMedia with no video constraints",errorDomain:"GetUserMedia",errorType:"Original Constraints: "+JSON.stringify(a)});return k.getUserMedia(babelHelpers["extends"]({},a,{video:!0}))}throw c})},getUserScreenMedia:function(a,c,d){return b("RTCScreenSharing").getUserMedia(a,c,d)},getUserMedia:function(a,c){var d=navigator,e=d.mediaDevices;if(typeof a.video==="object"&&a.video.mediaSource){b("FBLogger")("rtc_www").mustfix("Please use %s instead of %s for screen","RTCUtils.getUserScreenMedia()","RTCUtils.getUserMedia()");return b("RTCScreenSharing").getUserMedia(a,"unknown")}d=c&&c.optionalConstraintsOnly&&a.video;var f=k._parseConstraints(a,{optionalConstraintsOnly:!!d}),g=navigator.getUserMedia||navigator.webkitGetUserMedia||navigator.mozGetUserMedia||navigator.msGetUserMedia;return new(b("Promise"))(function(a,d){e&&typeof e.getUserMedia==="function"?(b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMedia] Newer version"}),a(e.getUserMedia(f).then(function(a){return k._maybeSupportFilteredStreams(a,!!(c&&c.supportFilteredStreams))}))):g?(b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMedia] Backwards compatible version"}),g.call(navigator,f,a,d)):(b("RTWebUserActionLogger").logCheckpoint({checkpoint:"[getUserMedia] Not supported"}),d("getUserMedia not supported"))})["catch"](function(a){var c=a.message,d=a.name,e=a.constraint;b("RTWebUserActionLogger").logError({errorDomain:"GetUserMedia",errorType:(d?d:"unknown GetUserMedia error")+":"+(c?" "+c:"")+(e?" "+e:"")});throw b("UserMediaRequestError").createFromNative(a)})},_parseConstraints:function(a,c){if(b("UserAgent").isBrowser("Chrome")||b("UserAgent").isBrowser("Opera")){var d=a.audio,e=a.video,f={};d!==void 0&&(f.audio=b("RTCUserMediaConstraints").chromify(d));e!==void 0&&(f.video=b("RTCUserMediaConstraints").chromify(e,c));return f}return a},_maybeSupportFilteredStreams:function(a,b){return a},getUserMediaWithValidation:function(a,c,d,e){c===void 0&&(c={audio:!0,video:!0});d===void 0&&(d=5);e===void 0&&(e={audio:1e3,video:1e3});return new(b("Promise"))(function(f,g){var h=function d(h){k.getUserMedia(a).then(function(d){return b("RTCMediaStreamValidator").validate(d,a,c,e).then(function(a){return f({stream:a})})["catch"](function(a){if(a.message===i||a.message===j)f({stream:d,err:a});else{k.stopMediaStream(d);throw a}})},g)["catch"](function(a){h>0?d(h-1):g(a)})};h(d)})},isFullScreen:function(){return Boolean(document.fullscreenElement||document.mozFullScreenElement||document.webkitFullscreenElement||document.msFullscreenElement)},requestFullScreen:function(a){a===void 0&&(a=document.documentElement),typeof a.requestFullscreen==="function"?a.requestFullscreen():typeof a.msRequestFullscreen==="function"?a.msRequestFullscreen():typeof a.mozRequestFullScreen==="function"?a.mozRequestFullScreen():typeof a.webkitRequestFullscreen==="function"&&a.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)},exitFullScreen:function(){typeof document.exitFullscreen==="function"?document.exitFullscreen():typeof document.msExitFullscreen==="function"?document.msExitFullscreen():typeof document.mozCancelFullScreen==="function"?document.mozCancelFullScreen():typeof document.webkitExitFullscreen==="function"&&document.webkitExitFullscreen()},toggleFullScreen:function(){k.isFullScreen()?k.exitFullScreen():k.requestFullScreen()},endCallReasonFromHangupReason:function(a){return b("RTCEndCallReason").fromHangupReason(a).getReasonID()},endCallReasonFromDismissRequest:function(a){return b("RTCEndCallReason").fromDismissRequest(a).getReasonID()},endCallSubreasonFromDismissRequest:function(a){return b("RTCEndCallReason").subreasonFromDismissRequest(a)},endCallReasonFromResponseStatusCode:function(a){return b("RTCEndCallReason").fromResponseStatusCode(a).getReasonID()},stopMediaStream:function(a){if(!a.active&&"active"in a)return;a.getTracks().forEach(function(a){a.readyState!=="ended"&&a.stop()})},transferAudioTracks:function(a,b){for(var c=b.getAudioTracks(),d=Array.isArray(c),e=0,c=d?c:c[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var f;if(d){if(e>=c.length)break;f=c[e++]}else{e=c.next();if(e.done)break;f=e.value}f=f;a.addTrack(f);b.removeTrack(f)}},payloadParticipantsToRTCUsers:function(a){return a.map(function(a){var c=a.big_image_src||a.image_src;a.fbid||g(0,1174);return new(b("RTCUser"))({FBID:a.fbid,profileUrl:new(h||(h=b("URI")))(a.href),profilePictureUrl:c,isMessengerUser:!!a.is_messenger_user,isPartiesUser:!!a.is_parties_user,userName:a.name,userShortName:a.short_name,vanity:a.vanity||""})})},getStreamVideoResolution:function(a){return new(b("Promise"))(function(c,d){var e=document.createElement("video");b("FBRTCUtils").attachMediaStream(e,a);var f=function(){e.removeEventListener("loadedmetadata",g),e.removeEventListener("error",h),b("FBRTCUtils").attachMediaStream(e,null)},g=function(){c({height:e.videoHeight,width:e.videoWidth}),f()},h=function(){d(e.error),f()};e.addEventListener("loadedmetadata",g);e.addEventListener("error",h)})},isScreenSharingSupported:function(){return b("UserAgent").isBrowser("Chrome")||this.isVCScreenSharingSupported()},isVCScreenSharingSupported:function(){return b("FBRTCConfig").isVCEndpointCall()&&b("RTCConfig").CollabWhitelistedBrowserGK},filterDevicesByKind:function(a,b){return a?a.filter(function(a){return a.kind===b}):[]},isDevicePresent:function(a,b){return a==null?!1:a.some(function(a){return a.deviceId===b})}};e.exports=k}),null);
+__d("RTCScreenSharing",["Promise","CollabRTCChromeScreenSharing","RTCUserMediaConstraints","RTCUtils","UserAgent","WorkplaceChatHelper"],(function(a,b,c,d,e,f){"use strict";var g="SCREEN_SHARING_NOT_SUPPORTED",h="UNEXPECTED_ERROR",i={SCREEN_SHARING_NOT_SUPPORTED:g,getUserMedia:function(a,c,d){if(b("UserAgent").isBrowser("Chrome")){var e;b("WorkplaceChatHelper").isDesktopChatApp()?e=b("WorkplaceChatHelper").getScreenSharingSourceID():e=b("CollabRTCChromeScreenSharing").getSourceID(d,c);return e.then(function(c){return b("RTCUtils").getUserMedia(b("RTCUserMediaConstraints").chromeMediaSource(a,c))}).then(function(a){for(var b=a.getTracks(),c=Array.isArray(b),d=0,b=c?b:b[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var e;if(c){if(d>=b.length)break;e=b[d++]}else{d=b.next();if(d.done)break;e=d.value}e=e;e.addEventListener("ended",function(b){return window.setTimeout(function(){a.active||i.stop()})})}return a})}else if(b("RTCUtils").isVCScreenSharingSupported()&&navigator.mediaDevices&&typeof navigator.mediaDevices.getUserMedia==="function")return b("Promise").resolve(navigator.mediaDevices.getUserMedia(a)["catch"](function(a){if(a.name==="NotAllowedError")throw new Error(g)}));return b("Promise").reject(new Error(g))},stop:function(){return b("UserAgent").isBrowser("Chrome")?b("WorkplaceChatHelper").isDesktopChatApp()?b("WorkplaceChatHelper").stopScreenSharing():b("CollabRTCChromeScreenSharing").stop():b("Promise").reject(new Error(h))}};e.exports=i}),null);
+__d("memoizeLastByArgs",["MemoizationInstrumentation","shallowArrayEqual"],(function(a,b,c,d,e,f){"use strict";function a(a,c){var d=c||a.name||"unknown",f=null;c=function(){for(var c=arguments.length,g=new Array(c),h=0;h<c;h++)g[h]=arguments[h];var i=b("MemoizationInstrumentation").onFunctionCall(e.id,d),j=!0;if(!(f!=null&&b("shallowArrayEqual")(g,f.args))){j=!1;var k=a.apply(void 0,g);f==null?f={args:g,ret:k}:(f.args=g,f.ret=k)}i&&i(j);return f.ret};return c}e.exports=a}),null);
+__d("FBRTCScreenSharingUtils",["FBRTCExperiment","FBRTCSupport","FBRTCVersionDetection","RTCConfig","RTCUtils"],(function(a,b,c,d,e,f){"use strict";a={isGroupCallScreenSharingSupported:function(){return b("RTCConfig").ScreenSharingToGroupGK},isSupportedBrowser:function(){return b("FBRTCVersionDetection").isChrome()&&b("FBRTCVersionDetection").webrtcVersion()>=34},canUserReceiveScreenSharing:function(){return!b("FBRTCSupport").isMobileDevice()&&(b("FBRTCVersionDetection").isChromium()&&b("FBRTCVersionDetection").webrtcVersion()>=34||b("RTCUtils").isVCScreenSharingSupported())},canPeerReceiveScreenSharing:function(a){if(a.remoteSupport("screen_sharing"))return!0;return!a.remoteSupport("www")&&!a.remoteSupport("mweb")?b("RTCConfig").ScreenSharingToMobileGK?!0:b("FBRTCExperiment").gen("webrtc_enable_screen_sharing").getBool("can_share_to_mobile",!1):!1}};e.exports=a}),null);
+__d("XGroupCallSendMessageController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/groupcall/sendmessage/",{webrtc_fbtrace:{type:"Int"}})}),null);
+__d("XScreenSharingController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/screen_sharing/",{peer_id:{type:"FBID",required:!0},version:{type:"Int"}})}),null);
+__d("RTCCallActionTypes",[],(function(a,b,c,d,e,f){e.exports=Object.freeze({CALL:"CALL",CALL_SUCCESS:"CALL_SUCCESS",CALL_ERROR:"CALL_ERROR",INCOMING_CALL_SUCCESS:"INCOMING_CALL_SUCCESS",INIT:"INIT",RESET:"RESET",RESET_FOR_REDIAL:"RESET_FOR_REDIAL",CALL_COLLISION:"CALL_COLLISION",WAIT_FOR_USER_INPUT:"WAIT_FOR_USER_INPUT",SET_CALL_SUMMARY:"SET_CALL_SUMMARY",SET_MW_CALL_TYPE:"SET_MW_CALL_TYPE",SET_LAYOUT:"SET_LAYOUT",SET_LINKHASH:"SET_LINKHASH",SET_DOMINANT_SPEAKER:"SET_DOMINANT_SPEAKER",SET_PINNED_SPEAKER:"SET_PINNED_SPEAKER",SET_USE_DOMINANT_SPEAKE_VIEW:"SET_USE_DOMINANT_SPEAKE_VIEW",SET_GRID_VIEW:"SET_GRID_VIEW",SET_STRIP_VIEW:"SET_STRIP_VIEW",INIT_THREAD:"INIT_THREAD",ON_PARTICIPANT_LEFT:"ON_PARTICIPANT_LEFT",ON_PARTICIPANTS_ADDED:"ON_PARTICIPANTS_ADDED",ADD_PARTICIPANTS_TO_RING:"ADD_PARTICIPANTS_TO_RING",JOIN:"JOIN",JOIN_SUCCESS:"JOIN_SUCCESS",JOIN_ERROR:"JOIN_ERROR",HANGUP:"HANGUP",HANGUP_SUCCESS:"HANGUP_SUCCESS",HANGUP_ERROR:"HANGUP_ERROR",ON_CONFERENCE_STATE:"ON_CONFERENCE_STATE",DISMISS:"DISMISS",END_CALL:"END_CALL",ON_JOIN_REQUEST_SENT:"ON_JOIN_REQUEST_SENT",ON_JOIN_RESPONSE:"ON_JOIN_RESPONSE",ON_RECEIVED_JOIN_RESPONSE:"ON_RECEIVED_JOIN_RESPONSE",ON_PROCESSED_JOIN_RESPONSE:"ON_PROCESSED_JOIN_RESPONSE",ON_SERVER_MEDIA_UPDATE_SUCCESS:"ON_SERVER_MEDIA_UPDATE_SUCCESS",ON_CLIENT_MEDIA_UPDATE_RESPONSE:"ON_CLIENT_MEDIA_UPDATE_RESPONSE",SET_LOCAL_CLIENT_VERSION:"SET_LOCAL_CLIENT_VERSION",INIT_LOCAL_USER:"INIT_LOCAL_USER",INIT_REMOTE_USERS:"INIT_REMOTE_USERS",UPDATE_REMOTE_USERS:"UPDATE_REMOTE_USERS",ADD_REMOTE_STREAM:"ADD_REMOTE_STREAM",REMOVE_REMOTE_STREAM:"REMOVE_REMOTE_STREAM",REMOVE_ALL_REMOTE_STREAMS:"REMOVE_ALL_REMOTE_STREAMS",ADD_REMOTE_TRACK:"ADD_REMOTE_TRACK",REMOVE_REMOTE_TRACK:"REMOVE_REMOTE_TRACK",AUDIO_MUTED:"AUDIO_MUTED",AUDIO_UNMUTED:"AUDIO_UNMUTED",VIDEO_MUTED:"VIDEO_MUTED",VIDEO_UNMUTED:"VIDEO_UNMUTED",REMOTE_AUDIO_MUTED:"REMOTE_AUDIO_MUTED",REMOTE_AUDIO_UNMUTED:"REMOTE_AUDIO_UNMUTED",REMOTE_VIDEO_MUTED:"REMOTE_VIDEO_MUTED",REMOTE_VIDEO_UNMUTED:"REMOTE_VIDEO_UNMUTED",SELF_VIEW_COLLAPSED:"SELF_VIEW_COLLAPSED",SELF_VIEW_UNCOLLAPSED:"SELF_VIEW_UNCOLLAPSED",ADD_LOCAL_STREAM:"ADD_LOCAL_STREAM",REMOVE_LOCAL_STREAM:"REMOVE_LOCAL_STREAM",REPLACE_LOCAL_STREAM:"REPLACE_LOCAL_STREAM",REMOVE_ALL_LOCAL_STREAMS:"REMOVE_ALL_LOCAL_STREAMS",STOP_LOCAL_STREAM:"STOP_LOCAL_STREAM",ADD_LOCAL_SCREEN_STREAM:"ADD_LOCAL_SCREEN_STREAM",REMOVE_LOCAL_SCREEN_STREAM:"REMOVE_LOCAL_SCREEN_STREAM",REMOVE_ALL_LOCAL_SCREEN_STREAMS:"REMOVE_ALL_LOCAL_SCREEN_STREAMS",REPLACE_LOCAL_SCREEN_STREAM:"REPLACE_LOCAL_SCREEN_STREAM",ADD_REMOTE_SCREEN_STREAM:"ADD_REMOTE_SCREEN_STREAM",REMOVE_REMOTE_SCREEN_STREAM:"REMOVE_REMOTE_SCREEN_STREAM",TOGGLE_REMOTE_STREAM:"TOGGLE_REMOTE_STREAM",SUBMIT_RATING:"SUBMIT_RATING",SUBMIT_FEEDBACK:"SUBMIT_FEEDBACK",SUBMIT_FEEDBACK_OPTIONS:"SUBMIT_FEEDBACK_OPTIONS",SUBMIT_SURVEY_CHOICE:"SUBMIT_SURVEY_CHOICE",RATING_SHOWN:"RATING_SHOWN",FEEDBACK_SHOWN:"FEEDBACK_SHOWN",SET_CONFERENCE_STATE:"SET_CONFERENCE_STATE",SET_END_CALL_REASON:"SET_END_CALL_REASON",FLOOR_STATUS:"FLOOR_STATUS",SET_INPUT_SYNC_STATE:"SET_INPUT_SYNC_STATE",SET_OUTPUT_SYNC_STATE:"SET_OUTPUT_SYNC_STATE",STATE_SYNC_SUBSCRIBE:"STATE_SYNC_SUBSCRIBE",STATE_SYNC_UNSUBSCRIBE:"STATE_SYNC_UNSUBSCRIBE",ADD_REMOTE_SCREEN_SHARING_USER_ID:"ADD_REMOTE_SCREEN_SHARING_USER_ID",REMOVE_REMOTE_SCREEN_SHARING_USER_ID:"REMOVE_REMOTE_SCREEN_SHARING_USER_ID",SET_PENDING_APPROVAL:"SET_PENDING_APPROVAL",FORCE_ENCODING_ENABLED:"FORCE_ENCODING_ENABLED"})}),null);
+__d("ZenonDominantSpeakerClientAnalyzer",["AudioContextSingleton","MovingAverage"],(function(a,b,c,d,e,f){"use strict";var g=300,h=900,i=1e3;a=function(){function a(a){this.intervalID=null,this.userToAudioLevels=new Map(),this.audioPollingCallbackIDs=new Map(),this.currentDominantSpeaker=null,this.lastSwitchTimeMSec=0,this.setDominantSpeaker=a}var c=a.prototype;c.start=function(){var a=this;this.intervalID=window.setInterval(function(){a.determineDominantSpeaker()},h)};c.stop=function(){window.clearInterval(this.intervalID)};c.determineDominantSpeaker=function(){var a=null,b=-1;this.userToAudioLevels.size>0?(this.userToAudioLevels.forEach(function(c,d){c.getAvg()>b&&(b=c.getAvg(),a=d)}),this.shouldSwitchDominantSpeaker(a)&&(this.setDominantSpeaker(a),this.currentDominantSpeaker=a)):this.currentDominantSpeaker=null};c.shouldSwitchDominantSpeaker=function(a){return a===null||a===this.currentDominantSpeaker?!1:Date.now()-i>this.lastSwitchTimeMSec};c.addUserStream=function(a,c){var d=this;this.audioPollingCallbackIDs.has(a)&&window.clearInterval(this.audioPollingCallbackIDs.get(a));if(c.getAudioTracks().length>0){var e=b("AudioContextSingleton").get();c=e.createMediaStreamSource(c);var f=e.createAnalyser();f.smoothingTimeConstant=.85;c.connect(f);e=f.frequencyBinCount;var h=new Uint8Array(e);this.audioPollingCallbackIDs.set(a,window.setInterval(function(){d.pollAudioLevels(a,f,h)},g))}};c.pollAudioLevels=function(a,c,d){c.getByteFrequencyData(d);var e=0;for(var f=0;f<d.length;f++)e+=d[f];d=e/c.frequencyBinCount/256*40;e=(f=this.userToAudioLevels.get(a))!=null?f:new(b("MovingAverage"))(h/g);this.userToAudioLevels.set(a,e.add(d))};c.removeUserStream=function(a){this.audioPollingCallbackIDs.has(a)&&window.clearInterval(this.audioPollingCallbackIDs.get(a)),this.userToAudioLevels["delete"](a),this.currentDominantSpeaker===a&&this.determineDominantSpeaker()};c.getDominantSpeaker=function(){return this.currentDominantSpeaker};c.getUsersWithAudioLevels=function(){return this.userToAudioLevels};return a}();e.exports=a}),null);
+__d("RTCGroupCallEscalationActionTypes",[],(function(a,b,c,d,e,f){e.exports=Object.freeze({GROUP_ESCALATION_START:"GROUP_ESCALATION_START",GROUP_ESCALATION_SUCCESS:"GROUP_ESCALATION_SUCCESS",GROUP_ESCALATION_CANCEL:"GROUP_ESCALATION_CANCEL",GROUP_ESCALATION_SET_USERS_TO_RING:"GROUP_ESCALATION_SET_USERS_TO_RING",GROUP_ESCALATION_CLEAR_P2P_CONNECTION:"GROUP_ESCALATION_CLEAR_P2P_CONNECTION",GROUP_ESCALATION_SET_P2P_CALLSUMMARY:"GROUP_ESCALATION_SET_P2P_CALLSUMMARY",GROUP_ESCALATION_ADD_LOCAL_STREAM:"GROUP_ESCALATION_ADD_LOCAL_STREAM"})}),null);
+__d("XVideoCallAdminMessageController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/admin_msg/",{})}),null);
+/**
+ * Copyright @ 2015 Atlassian Pty Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-interop-array-equals",[],(function $module_sdp_interop_array_equals(global,require,requireDynamic,requireLazy,module,exports){
+
+module.exports = function arrayEquals(array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l = this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!arrayEquals.apply(this[i], [array[i]]))
+                return false;
+        } else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal:
+            // {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+};
+
+/*  */}),null);
+/**
+ * Released under the MIT license. Copyright (c) 2013 Eirik Albrigtsen.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-transform-grammar",[],(function $module_sdp_transform_grammar(global,require,requireDynamic,requireLazy,module,exports){
+
+var grammar = module.exports = {
+  v: [{
+    name: 'version',
+    reg: /^(\d*)$/
+  }],
+  o: [{ //o=- 20518 0 IN IP4 203.0.113.1
+    // NB: sessionId will be a String in most cases because it is huge
+    name: 'origin',
+    reg: /^(\S*) (\d*) (\d*) (\S*) IP(\d) (\S*)/,
+    names: ['username', 'sessionId', 'sessionVersion', 'netType', 'ipVer', 'address'],
+    format: '%s %s %d %s IP%d %s'
+  }],
+  // default parsing of these only (though some of these feel outdated)
+  s: [{ name: 'name' }],
+  i: [{ name: 'description' }],
+  u: [{ name: 'uri' }],
+  e: [{ name: 'email' }],
+  p: [{ name: 'phone' }],
+  z: [{ name: 'timezones' }], // TODO: this one can actually be parsed properly..
+  r: [{ name: 'repeats' }],   // TODO: this one can also be parsed properly
+  //k: [{}], // outdated thing ignored
+  t: [{ //t=0 0
+    name: 'timing',
+    reg: /^(\d*) (\d*)/,
+    names: ['start', 'stop'],
+    format: '%d %d'
+  }],
+  c: [{ //c=IN IP4 10.47.197.26
+    name: 'connection',
+    reg: /^IN IP(\d) (\S*)/,
+    names: ['version', 'ip'],
+    format: 'IN IP%d %s'
+  }],
+  b: [{ //b=AS:4000
+    push: 'bandwidth',
+    reg: /^(TIAS|AS|CT|RR|RS):(\d*)/,
+    names: ['type', 'limit'],
+    format: '%s:%s'
+  }],
+  m: [{ //m=video 51744 RTP/AVP 126 97 98 34 31
+    // NB: special - pushes to session
+    // TODO: rtp/fmtp should be filtered by the payloads found here?
+    reg: /^(\w*) (\d*) ([\w\/]*)(?: (.*))?/,
+    names: ['type', 'port', 'protocol', 'payloads'],
+    format: '%s %d %s %s'
+  }],
+  a: [
+    { //a=rtpmap:110 opus/48000/2
+      push: 'rtp',
+      reg: /^rtpmap:(\d*) ([\w\-\.]*)(?:\s*\/(\d*)(?:\s*\/(\S*))?)?/,
+      names: ['payload', 'codec', 'rate', 'encoding'],
+      format: function (o) {
+        return (o.encoding) ?
+          'rtpmap:%d %s/%s/%s':
+          o.rate ?
+          'rtpmap:%d %s/%s':
+          'rtpmap:%d %s';
+      }
+    },
+    { //a=fmtp:108 profile-level-id=24;object=23;bitrate=64000
+      //a=fmtp:111 minptime=10; useinbandfec=1
+      push: 'fmtp',
+      reg: /^fmtp:(\d*) ([\S| ]*)/,
+      names: ['payload', 'config'],
+      format: 'fmtp:%d %s'
+    },
+    { //a=control:streamid=0
+      name: 'control',
+      reg: /^control:(.*)/,
+      format: 'control:%s'
+    },
+    { //a=rtcp:65179 IN IP4 193.84.77.194
+      name: 'rtcp',
+      reg: /^rtcp:(\d*)(?: (\S*) IP(\d) (\S*))?/,
+      names: ['port', 'netType', 'ipVer', 'address'],
+      format: function (o) {
+        return (o.address != null) ?
+          'rtcp:%d %s IP%d %s':
+          'rtcp:%d';
+      }
+    },
+    { //a=rtcp-fb:98 trr-int 100
+      push: 'rtcpFbTrrInt',
+      reg: /^rtcp-fb:(\*|\d*) trr-int (\d*)/,
+      names: ['payload', 'value'],
+      format: 'rtcp-fb:%d trr-int %d'
+    },
+    { //a=rtcp-fb:98 nack rpsi
+      push: 'rtcpFb',
+      reg: /^rtcp-fb:(\*|\d*) ([\w-_]*)(?: ([\w-_]*))?/,
+      names: ['payload', 'type', 'subtype'],
+      format: function (o) {
+        return (o.subtype != null) ?
+          'rtcp-fb:%s %s %s':
+          'rtcp-fb:%s %s';
+      }
+    },
+    { //a=extmap:2 urn:ietf:params:rtp-hdrext:toffset
+      //a=extmap:1/recvonly URI-gps-string
+      push: 'ext',
+      reg: /^extmap:(\d+)(?:\/(\w+))? (\S*)(?: (\S*))?/,
+      names: ['value', 'direction', 'uri', 'config'],
+      format: function (o) {
+        return 'extmap:%d' + (o.direction ? '/%s' : '%v') + ' %s' + (o.config ? ' %s' : '');
+      }
+    },
+    { //a=crypto:1 AES_CM_128_HMAC_SHA1_80 inline:PS1uQCVeeCFCanVmcjkpPywjNWhcYD0mXXtxaVBR|2^20|1:32
+      push: 'crypto',
+      reg: /^crypto:(\d*) ([\w_]*) (\S*)(?: (\S*))?/,
+      names: ['id', 'suite', 'config', 'sessionConfig'],
+      format: function (o) {
+        return (o.sessionConfig != null) ?
+          'crypto:%d %s %s %s':
+          'crypto:%d %s %s';
+      }
+    },
+    { //a=setup:actpass
+      name: 'setup',
+      reg: /^setup:(\w*)/,
+      format: 'setup:%s'
+    },
+    { //a=mid:1
+      name: 'mid',
+      reg: /^mid:([^\s]*)/,
+      format: 'mid:%s'
+    },
+    { //a=msid:0c8b064d-d807-43b4-b434-f92a889d8587 98178685-d409-46e0-8e16-7ef0db0db64a
+      name: 'msid',
+      reg: /^msid:(.*)/,
+      format: 'msid:%s'
+    },
+    { //a=ptime:20
+      name: 'ptime',
+      reg: /^ptime:(\d*)/,
+      format: 'ptime:%d'
+    },
+    { //a=maxptime:60
+      name: 'maxptime',
+      reg: /^maxptime:(\d*)/,
+      format: 'maxptime:%d'
+    },
+    { //a=sendrecv
+      name: 'direction',
+      reg: /^(sendrecv|recvonly|sendonly|inactive)/
+    },
+    { //a=ice-lite
+      name: 'icelite',
+      reg: /^(ice-lite)/
+    },
+    { //a=ice-ufrag:F7gI
+      name: 'iceUfrag',
+      reg: /^ice-ufrag:(\S*)/,
+      format: 'ice-ufrag:%s'
+    },
+    { //a=ice-pwd:x9cml/YzichV2+XlhiMu8g
+      name: 'icePwd',
+      reg: /^ice-pwd:(\S*)/,
+      format: 'ice-pwd:%s'
+    },
+    { //a=fingerprint:SHA-1 00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33
+      name: 'fingerprint',
+      reg: /^fingerprint:(\S*) (\S*)/,
+      names: ['type', 'hash'],
+      format: 'fingerprint:%s %s'
+    },
+    { //a=candidate:0 1 UDP 2113667327 203.0.113.1 54400 typ host
+      //a=candidate:1162875081 1 udp 2113937151 192.168.34.75 60017 typ host generation 0 network-id 3 network-cost 10
+      //a=candidate:3289912957 2 udp 1845501695 193.84.77.194 60017 typ srflx raddr 192.168.34.75 rport 60017 generation 0 network-id 3 network-cost 10
+      //a=candidate:229815620 1 tcp 1518280447 192.168.150.19 60017 typ host tcptype active generation 0 network-id 3 network-cost 10
+      //a=candidate:3289912957 2 tcp 1845501695 193.84.77.194 60017 typ srflx raddr 192.168.34.75 rport 60017 tcptype passive generation 0 network-id 3 network-cost 10
+      push:'candidates',
+      reg: /^candidate:(\S*) (\d*) (\S*) (\d*) (\S*) (\d*) typ (\S*)(?: raddr (\S*) rport (\d*))?(?: tcptype (\S*))?(?: generation (\d*))?(?: network-id (\d*))?(?: network-cost (\d*))?/,
+      names: ['foundation', 'component', 'transport', 'priority', 'ip', 'port', 'type', 'raddr', 'rport', 'tcptype', 'generation', 'network-id', 'network-cost'],
+      format: function (o) {
+        var str = 'candidate:%s %d %s %d %s %d typ %s';
+
+        str += (o.raddr != null) ? ' raddr %s rport %d' : '%v%v';
+
+        // NB: candidate has three optional chunks, so %void middles one if it's missing
+        str += (o.tcptype != null) ? ' tcptype %s' : '%v';
+
+        if (o.generation != null) {
+          str += ' generation %d';
+        }
+
+        str += (o['network-id'] != null) ? ' network-id %d' : '%v';
+        str += (o['network-cost'] != null) ? ' network-cost %d' : '%v';
+        return str;
+      }
+    },
+    { //a=end-of-candidates (keep after the candidates line for readability)
+      name: 'endOfCandidates',
+      reg: /^(end-of-candidates)/
+    },
+    { //a=remote-candidates:1 203.0.113.1 54400 2 203.0.113.1 54401 ...
+      name: 'remoteCandidates',
+      reg: /^remote-candidates:(.*)/,
+      format: 'remote-candidates:%s'
+    },
+    { //a=ice-options:trickle fb-force-5245
+      name: 'iceOptions',
+      reg: /^ice-options:(.*)/,
+      format: 'ice-options:%s'
+    },
+    { //a=ssrc:2566107569 cname:t9YU8M1UxTF8Y1A1
+      push: 'ssrcs',
+      reg: /^ssrc:(\d*) ([\w_]*)(?::(.*))?/,
+      names: ['id', 'attribute', 'value'],
+      format: function (o) {
+        var str = 'ssrc:%d';
+        if (o.attribute != null) {
+          str += ' %s';
+          if (o.value != null) {
+            str += ':%s';
+          }
+        }
+        return str;
+      }
+    },
+    { //a=ssrc-group:FEC 1 2
+      //a=ssrc-group:FEC-FR 3004364195 1080772241
+      push: 'ssrcGroups',
+      // token-char = %x21 / %x23-27 / %x2A-2B / %x2D-2E / %x30-39 / %x41-5A / %x5E-7E
+      reg: /^ssrc-group:([\x21\x23\x24\x25\x26\x27\x2A\x2B\x2D\x2E\w]*) (.*)/,
+      names: ['semantics', 'ssrcs'],
+      format: 'ssrc-group:%s %s'
+    },
+    { //a=msid-semantic: WMS Jvlam5X3SX1OP6pn20zWogvaKJz5Hjf9OnlV
+      name: 'msidSemantic',
+      reg: /^msid-semantic:\s?(\w*) (\S*)/,
+      names: ['semantic', 'token'],
+      format: 'msid-semantic: %s %s' // space after ':' is not accidental
+    },
+    { //a=group:BUNDLE audio video
+      push: 'groups',
+      reg: /^group:(\w*) (.*)/,
+      names: ['type', 'mids'],
+      format: 'group:%s %s'
+    },
+    { //a=rtcp-mux
+      name: 'rtcpMux',
+      reg: /^(rtcp-mux)/
+    },
+    { //a=rtcp-rsize
+      name: 'rtcpRsize',
+      reg: /^(rtcp-rsize)/
+    },
+    { //a=sctpmap:5000 webrtc-datachannel 1024
+      name: 'sctpmap',
+      reg: /^sctpmap:([\w_\/]*) (\S*)(?: (\S*))?/,
+      names: ['sctpmapNumber', 'app', 'maxMessageSize'],
+      format: function (o) {
+        return (o.maxMessageSize != null) ?
+          'sctpmap:%s %s %s' :
+          'sctpmap:%s %s';
+      }
+    },
+    { //a=x-google-flag:conference
+      name: 'xGoogleFlag',
+      reg: /^x-google-flag:([^\s]*)/,
+      format: 'x-google-flag:%s'
+    },
+    { //a=rid:1 send max-width=1280;max-height=720;max-fps=30;depend=0
+      push: 'rids',
+      reg: /^rid:([\d\w]+) (\w+)(?: ([\S| ]*))?/,
+      names: ['id', 'direction', 'params'],
+      format: function (o) {
+        return (o.params) ? 'rid:%s %s %s' : 'rid:%s %s';
+      }
+    },
+    { //a=imageattr:97 send [x=800,y=640,sar=1.1,q=0.6] [x=480,y=320] recv [x=330,y=250]
+      //a=imageattr:* send [x=800,y=640] recv *
+      //a=imageattr:100 recv [x=320,y=240]
+      push: 'imageattrs',
+      reg: new RegExp(
+        //a=imageattr:97
+        '^imageattr:(\\d+|\\*)' +
+        //send [x=800,y=640,sar=1.1,q=0.6] [x=480,y=320]
+        '[\\s\\t]+(send|recv)[\\s\\t]+(\\*|\\[\\S+\\](?:[\\s\\t]+\\[\\S+\\])*)' +
+        //recv [x=330,y=250]
+        '(?:[\\s\\t]+(recv|send)[\\s\\t]+(\\*|\\[\\S+\\](?:[\\s\\t]+\\[\\S+\\])*))?'
+      ),
+      names: ['pt', 'dir1', 'attrs1', 'dir2', 'attrs2'],
+      format: function (o) {
+        return 'imageattr:%s %s %s' + (o.dir2 ? ' %s %s' : '');
+      }
+    },
+    { //a=simulcast:send 1,2,3;~4,~5 recv 6;~7,~8
+      //a=simulcast:recv 1;4,5 send 6;7
+      name: 'simulcast',
+      reg: new RegExp(
+        //a=simulcast:
+        '^simulcast:' +
+        //send 1,2,3;~4,~5
+        '(send|recv) ([a-zA-Z0-9\\-_~;,]+)' +
+        //space + recv 6;~7,~8
+        '(?:\\s?(send|recv) ([a-zA-Z0-9\\-_~;,]+))?' +
+        //end
+        '$'
+      ),
+      names: ['dir1', 'list1', 'dir2', 'list2'],
+      format: function (o) {
+        return 'simulcast:%s %s' + (o.dir2 ? ' %s %s' : '');
+      }
+    },
+    { //Old simulcast draft 03 (implemented by Firefox)
+      //  https://tools.ietf.org/html/draft-ietf-mmusic-sdp-simulcast-03
+      //a=simulcast: recv pt=97;98 send pt=97
+      //a=simulcast: send rid=5;6;7 paused=6,7
+      name: 'simulcast_03',
+      reg: /^simulcast:[\s\t]+([\S+\s\t]+)$/,
+      names: ['value'],
+      format: 'simulcast: %s'
+    },
+    {
+      //a=framerate:25
+      //a=framerate:29.97
+      name: 'framerate',
+      reg: /^framerate:(\d+(?:$|\.\d+))/,
+      format: 'framerate:%s'
+    },
+    { // any a= that we don't understand is kepts verbatim on media.invalid
+      push: 'invalid',
+      names: ['value']
+    }
+  ]
+};
+
+// set sensible defaults to avoid polluting the grammar with boring details
+Object.keys(grammar).forEach(function (key) {
+  var objs = grammar[key];
+  objs.forEach(function (obj) {
+    if (!obj.reg) {
+      obj.reg = /(.*)/;
+    }
+    if (!obj.format) {
+      obj.format = '%s';
+    }
+  });
+});
+
+/*  */}),null);
+/**
+ * Released under the MIT license. Copyright (c) 2013 Eirik Albrigtsen.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-transform-parser",["sdp-transform-grammar"],(function $module_sdp_transform_parser(global,require,requireDynamic,requireLazy,module,exports){
+
+var toIntIfInt = function (v) {
+  return String(Number(v)) === v ? Number(v) : v;
+};
+
+var attachProperties = function (match, location, names, rawName) {
+  if (rawName && !names) {
+    location[rawName] = toIntIfInt(match[1]);
+  }
+  else {
+    for (var i = 0; i < names.length; i += 1) {
+      if (match[i+1] != null) {
+        location[names[i]] = toIntIfInt(match[i+1]);
+      }
+    }
+  }
+};
+
+var parseReg = function (obj, location, content) {
+  var needsBlank = obj.name && obj.names;
+  if (obj.push && !location[obj.push]) {
+    location[obj.push] = [];
+  }
+  else if (needsBlank && !location[obj.name]) {
+    location[obj.name] = {};
+  }
+  var keyLocation = obj.push ?
+    {} :  // blank object that will be pushed
+    needsBlank ? location[obj.name] : location; // otherwise, named location or root
+
+  attachProperties(content.match(obj.reg), keyLocation, obj.names, obj.name);
+
+  if (obj.push) {
+    location[obj.push].push(keyLocation);
+  }
+};
+
+var grammar = require('sdp-transform-grammar');
+var validLine = RegExp.prototype.test.bind(/^([a-z])=(.*)/);
+
+exports.parse = function (sdp) {
+  var session = {}
+    , media = []
+    , location = session; // points at where properties go under (one of the above)
+
+  // parse lines we understand
+  sdp.split(/(\r\n|\r|\n)/).filter(validLine).forEach(function (l) {
+    var type = l[0];
+    var content = l.slice(2);
+    if (type === 'm') {
+      media.push({rtp: [], fmtp: []});
+      location = media[media.length-1]; // point at latest media line
+    }
+
+    for (var j = 0; j < (grammar[type] || []).length; j += 1) {
+      var obj = grammar[type][j];
+      if (obj.reg.test(content)) {
+        return parseReg(obj, location, content);
+      }
+    }
+  });
+
+  session.media = media; // link it up
+  return session;
+};
+
+var paramReducer = function (acc, expr) {
+  var s = expr.split(/=(.+)/, 2);
+  if (s.length === 2) {
+    acc[s[0]] = toIntIfInt(s[1]);
+  }
+  return acc;
+};
+
+exports.parseParams = function (str) {
+  return str.split(/\;\s?/).reduce(paramReducer, {});
+};
+
+// For backward compatibility - alias will be removed in 3.0.0
+exports.parseFmtpConfig = exports.parseParams;
+
+exports.parsePayloads = function (str) {
+  return str.split(' ').map(Number);
+};
+
+exports.parseRemoteCandidates = function (str) {
+  var candidates = [];
+  var parts = str.split(' ').map(toIntIfInt);
+  for (var i = 0; i < parts.length; i += 3) {
+    candidates.push({
+      component: parts[i],
+      ip: parts[i + 1],
+      port: parts[i + 2]
+    });
+  }
+  return candidates;
+};
+
+exports.parseImageAttributes = function (str) {
+  return str.split(' ').map(function (item) {
+    return item.substring(1, item.length-1).split(',').reduce(paramReducer, {});
+  });
+};
+
+exports.parseSimulcastStreamList = function (str) {
+  return str.split(';').map(function (stream) {
+    return stream.split(',').map(function (format) {
+      var scid, paused = false;
+
+      if (format[0] !== '~') {
+        scid = toIntIfInt(format);
+      } else {
+        scid = toIntIfInt(format.substring(1, format.length));
+        paused = true;
+      }
+
+      return {
+        scid: scid,
+        paused: paused
+      };
+    });
+  });
+};
+
+/*  */}),null);
+/**
+ * Released under the MIT license. Copyright (c) 2013 Eirik Albrigtsen.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-transform-writer",["sdp-transform-grammar"],(function $module_sdp_transform_writer(global,require,requireDynamic,requireLazy,module,exports){
+
+var grammar = require('sdp-transform-grammar');
+
+// customized util.format - discards excess arguments and can void middle ones
+var formatRegExp = /%[sdv%]/g;
+var format = function (formatStr) {
+  var i = 1;
+  var args = arguments;
+  var len = args.length;
+  return formatStr.replace(formatRegExp, function (x) {
+    if (i >= len) {
+      return x; // missing argument
+    }
+    var arg = args[i];
+    i += 1;
+    switch (x) {
+    case '%%':
+      return '%';
+    case '%s':
+      return String(arg);
+    case '%d':
+      return Number(arg);
+    case '%v':
+      return '';
+    }
+  });
+  // NB: we discard excess arguments - they are typically undefined from makeLine
+};
+
+var makeLine = function (type, obj, location) {
+  var str = obj.format instanceof Function ?
+    (obj.format(obj.push ? location : location[obj.name])) :
+    obj.format;
+
+  var args = [type + '=' + str];
+  if (obj.names) {
+    for (var i = 0; i < obj.names.length; i += 1) {
+      var n = obj.names[i];
+      if (obj.name) {
+        args.push(location[obj.name][n]);
+      }
+      else { // for mLine and push attributes
+        args.push(location[obj.names[i]]);
+      }
+    }
+  }
+  else {
+    args.push(location[obj.name]);
+  }
+  return format.apply(null, args);
+};
+
+// RFC specified order
+// TODO: extend this with all the rest
+var defaultOuterOrder = [
+  'v', 'o', 's', 'i',
+  'u', 'e', 'p', 'c',
+  'b', 't', 'r', 'z', 'a'
+];
+var defaultInnerOrder = ['i', 'c', 'b', 'a'];
+
+
+module.exports = function (session, opts) {
+  opts = opts || {};
+  // ensure certain properties exist
+  if (session.version == null) {
+    session.version = 0; // 'v=0' must be there (only defined version atm)
+  }
+  if (session.name == null) {
+    session.name = ' '; // 's= ' must be there if no meaningful name set
+  }
+  session.media.forEach(function (mLine) {
+    if (mLine.payloads == null) {
+      mLine.payloads = '';
+    }
+  });
+
+  var outerOrder = opts.outerOrder || defaultOuterOrder;
+  var innerOrder = opts.innerOrder || defaultInnerOrder;
+  var sdp = [];
+
+  // loop through outerOrder for matching properties on session
+  outerOrder.forEach(function (type) {
+    grammar[type].forEach(function (obj) {
+      if (obj.name in session && session[obj.name] != null) {
+        sdp.push(makeLine(type, obj, session));
+      }
+      else if (obj.push in session && session[obj.push] != null) {
+        session[obj.push].forEach(function (el) {
+          sdp.push(makeLine(type, obj, el));
+        });
+      }
+    });
+  });
+
+  // then for each media line, follow the innerOrder
+  session.media.forEach(function (mLine) {
+    sdp.push(makeLine('m', grammar.m[0], mLine));
+
+    innerOrder.forEach(function (type) {
+      grammar[type].forEach(function (obj) {
+        if (obj.name in mLine && mLine[obj.name] != null) {
+          sdp.push(makeLine(type, obj, mLine));
+        }
+        else if (obj.push in mLine && mLine[obj.push] != null) {
+          mLine[obj.push].forEach(function (el) {
+            sdp.push(makeLine(type, obj, el));
+          });
+        }
+      });
+    });
+  });
+
+  return sdp.join('\r\n') + '\r\n';
+};
+
+/*  */}),null);
+/**
+ * Released under the MIT license. Copyright (c) 2013 Eirik Albrigtsen.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-transform",["sdp-transform-parser","sdp-transform-writer"],(function $module_sdp_transform(global,require,requireDynamic,requireLazy,module,exports){
+
+var parser = require('sdp-transform-parser');
+var writer = require('sdp-transform-writer');
+
+exports.write = writer;
+exports.parse = parser.parse;
+exports.parseFmtpConfig = parser.parseFmtpConfig;
+exports.parseParams = parser.parseParams;
+exports.parsePayloads = parser.parsePayloads;
+exports.parseRemoteCandidates = parser.parseRemoteCandidates;
+exports.parseImageAttributes = parser.parseImageAttributes;
+exports.parseSimulcastStreamList = parser.parseSimulcastStreamList;
+
+/*  */}),null);
+/**
+ * Copyright @ 2015 Atlassian Pty Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @nolint
+ * @preserve-header
+ * @preserve-whitespace
+ */
+__d("sdp-interop-transform",["sdp-transform"],(function $module_sdp_interop_transform(global,require,requireDynamic,requireLazy,module,exports){
+
+const transform = require('sdp-transform');
+
+exports.write = function(session, opts) {
+
+  if (typeof session !== 'undefined' &&
+      typeof session.media !== 'undefined' &&
+      Array.isArray(session.media)) {
+
+    session.media.forEach(function (mLine) {
+      // expand sources to ssrcs
+      if (typeof mLine.sources !== 'undefined' &&
+        Object.keys(mLine.sources).length !== 0) {
+          mLine.ssrcs = [];
+          Object.keys(mLine.sources).forEach(function (ssrc) {
+            const source = mLine.sources[ssrc];
+            Object.keys(source).forEach(function (attribute) {
+              mLine.ssrcs.push({
+                id: ssrc,
+                attribute: attribute,
+                value: source[attribute]
+              });
+            });
+          });
+          delete mLine.sources;
+        }
+
+      // join ssrcs in ssrc groups
+      if (typeof mLine.ssrcGroups !== 'undefined' &&
+        Array.isArray(mLine.ssrcGroups)) {
+          mLine.ssrcGroups.forEach(function (ssrcGroup) {
+            if (typeof ssrcGroup.ssrcs !== 'undefined' &&
+                Array.isArray(ssrcGroup.ssrcs)) {
+              ssrcGroup.ssrcs = ssrcGroup.ssrcs.join(' ');
+            }
+          });
+        }
+    });
+  }
+
+  // join group mids
+  if (typeof session !== 'undefined' &&
+      typeof session.groups !== 'undefined' && Array.isArray(session.groups)) {
+
+    session.groups.forEach(function (g) {
+      if (typeof g.mids !== 'undefined' && Array.isArray(g.mids)) {
+        g.mids = g.mids.join(' ');
+      }
+    });
+  }
+
+  return transform.write(session, opts);
+};
+
+exports.parse = function(sdp) {
+  const session = transform.parse(sdp);
+
+  if (typeof session !== 'undefined' && typeof session.media !== 'undefined' &&
+      Array.isArray(session.media)) {
+
+    session.media.forEach(function (mLine) {
+      // group sources attributes by ssrc
+      if (typeof mLine.ssrcs !== 'undefined' && Array.isArray(mLine.ssrcs)) {
+        mLine.sources = {};
+        mLine.ssrcs.forEach(function (ssrc) {
+          if (!mLine.sources[ssrc.id])
+          mLine.sources[ssrc.id] = {};
+        mLine.sources[ssrc.id][ssrc.attribute] = ssrc.value;
+        });
+
+        delete mLine.ssrcs;
+      }
+
+      // split ssrcs in ssrc groups
+      if (typeof mLine.ssrcGroups !== 'undefined' &&
+        Array.isArray(mLine.ssrcGroups)) {
+          mLine.ssrcGroups.forEach(function (ssrcGroup) {
+            if (typeof ssrcGroup.ssrcs === 'string') {
+              ssrcGroup.ssrcs = ssrcGroup.ssrcs.split(' ');
+            }
+          });
+        }
+    });
+  }
+  // split group mids
+  if (typeof session !== 'undefined' &&
+      typeof session.groups !== 'undefined' && Array.isArray(session.groups)) {
+
+    session.groups.forEach(function (g) {
+      if (typeof g.mids === 'string') {
+        g.mids = g.mids.split(' ');
+      }
+    });
+  }
+
+  return session;
+};
+
+/*  */}),null);
+__d("FBRTCStatsHelpers",["Promise"],(function(a,b,c,d,e,f){var g=!1,h=function(a){if(a==="host"||a==="local")return"local";if(a==="serverreflexive"||a==="srflx")return"srflx";if(a==="peerreflexive"||a==="prflx")return"prflx";return a==="relayed"||a==="relay"?"relay":"unknown_"+a},i={UNKNOWN_CONNECTION:"l:unknown-unknown;r:unknown-unknown",connectionType:function(a,b,c,d){return a!==null&&a!==void 0&&b!==null&&c!==null&&c!==void 0&&d!==null?["l:",h(a),"-",b,";","r:",h(c),"-",d].join(""):null},getVideoCapabilitiesInfo:function(a){a=a.getVideoTracks();a=a[0];if(a==null)return null;if(typeof a.getCapabilities!=="function")return null;a=a.getCapabilities();var b=a.aspectRatio,c=a.facingMode,d=a.frameRate,e=a.height;a=a.width;return{facing_mode:(c=c)!=null?c:null,max_aspect_ratio:(c=b==null?void 0:b.max)!=null?c:null,max_frame_rate:(c=d==null?void 0:d.max)!=null?c:null,max_height:(d=e==null?void 0:e.max)!=null?d:null,max_width:(c=a==null?void 0:a.max)!=null?c:null,min_aspect_ratio:(e=b==null?void 0:b.min)!=null?e:null}},getMediaInputs:function(a){var b={audio_inputs:[],video_inputs:[]};a.forEach(function(a){switch(a.kind){case"videoinput":b.video_inputs.push(a.label);break;case"audioinput":b.audio_inputs.push(a.label);break}});return b},logCapabilities:function(a,b,c){a.setVideoCapabilities(i.getVideoCapabilitiesInfo(b)),a.setMediaInputs(i.getMediaInputs(c))},internalGetWindow:function(){return window},getBatteryStats:function(){return new(b("Promise"))(function(a,b){var c=i.internalGetWindow().navigator.getBattery;typeof c==="function"?a(c.call(navigator)):b()}).then(function(a){a.charging?g=!0:a.onchargingchange=function(a){a.target.charging&&(g=!0),a.target.onchargingchange=null};return{level:a.level*100,wasCharged:g}})["catch"](function(){return{placeholder:!0,level:-1,wasCharged:!1}})}};e.exports=i}),null);
+__d("XGroupCallSendRequestController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/groupcall/sendrequest/",{webrtc_fbtrace:{type:"Int"}})}),null);
+__d("XCollabCallSendMessageController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/collab/sendmessage/",{recipient_id:{type:"Int",required:!0},msg_id:{type:"Int",required:!0},message_info:{type:"String",required:!0},webrtc_fbtrace:{type:"Int"}})}),null);
+__d("XVideoCallSendMessageController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/sendmessage/",{recipient_id:{type:"Int",required:!0},msg_id:{type:"Int",required:!0},message_info:{type:"String",required:!0},webrtc_fbtrace:{type:"Int"}})}),null);
+__d("XVideoCallTurnDiscoveryController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/turndiscovery/",{version:{type:"Int",required:!0},call_id:{type:"String"}})}),null);
+__d("XGroupCallController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/groupcall/{?call_context}/",{call_context:{type:"String",required:!0},call_id:{type:"Int"},users_to_ring:{type:"FBIDSet",defaultValue:[]},has_video:{type:"Bool",defaultValue:!0},initialize_video:{type:"Bool",defaultValue:!0},server_info_data:{type:"String"},nonce:{type:"String"},multiway_www_tier:{type:"String"},multiway_core_tier:{type:"String"},locale:{type:"String"},funnel_session_id:{type:"String"}})}),null);
+__d("XGroupCallSigningController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/groupcall/init/",{call_context:{type:"String",required:!0},call_id:{type:"Int"},users_to_ring:{type:"FBIDSet",defaultValue:[]},has_video:{type:"Bool",defaultValue:!1},initialize_video:{type:"Bool",defaultValue:!1},server_info_data:{type:"String"},nonce:{type:"String"},multiway_www_tier:{type:"String"},multiway_core_tier:{type:"String"}})}),null);
+__d("XVideoCallController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/incall/",{peer_id:{type:"FBID",required:!0},call_id:{type:"Int"},is_caller:{type:"Bool",defaultValue:!1},audio_only:{type:"Bool",defaultValue:!1},nonce:{type:"String"},meeting_id:{type:"Int"},meeting_pass:{type:"String"},initialize_video:{type:"Bool",defaultValue:!0},locale:{type:"String"}})}),null);
+__d("XVideoCallSigningController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/videocall/init/",{peer_id:{type:"FBID",required:!0},call_id:{type:"Int"},is_caller:{type:"Bool",defaultValue:!1},audio_only:{type:"Bool",defaultValue:!1},nonce:{type:"String"},meeting_id:{type:"Int"},meeting_pass:{type:"String"},initialize_video:{type:"Bool",defaultValue:!0}})}),null);
+__d("XRTCCallNUXController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/rtc/call/nuxstatus/",{})}),null);
+__d("RTCP2PProtocolHandler",["invariant","Promise","Bootloader","CurrentUser","DateConsts","ErrorPubSub","FBLogger","FBRTCCallSummary","FBRTCCallSummaryStore","FBRTCConfig","FBRTCConsoleLogger","FBRTCConstants","FBRTCExperiment","FBRTCIceCache","FBRTCLocalMessageQueue","FBRTCLocalUploadLogLevel","FBRTCLogger","FBRTCMessage","FBRTCMessageDedup","FBRTCMessageListener","FBRTCMessageSender","FBRTCPCConfig","FBRTCPeerConnection","FBRTCPeerConnectionHelper","FBRTCRetriableMessage","FBRTCSdpUtils","FBRTCStatsHelpers","FBRTCSupport","FBRTCTurnDiscovery","FBRTCUrlManager","FBRTCUserSettings","RTCCallActions","RTCCallNUXActions","RTCCallStore","RTCCallType","RTCConfig","RTCEndCallReason","RTCGroupCallEscalationStore","RTCGroupCallEscalator","RTCOneVCActions","RTCP2PCallActions","RTCP2PCallEscalationActions","RTCP2PCallEscalationStore","RTCP2PCallEscalator","RTCP2PCallStore","RTCP2PCallWindowHandler","RTCPeerConnectionQueue","RTCSessionDescription","RTCSignalingExperiments","RTCStreamDurationTracker","RTCUserMediaConstraints","RTCUtils","RTWebClientFeatureGating","RTWebExperiments","RTWebUserActionLogger","UserAgent","clearTimeout","debounce","gkx","promiseDone","setTimeout"],(function(a,b,c,d,e,f,g){"use strict";var h;a=b("DateConsts").MS_PER_MIN;c=b("DateConsts").MS_PER_SEC;var i=(d=b("FBRTCConstants")).CallEndReason,j=d.CallType,k=d.SignalingProtocol,l=d.VideoQuality,m=d.ClientReportedEventType,n=1*a,o=15*c,p=30*c;f=function(){function a(){var c=this;this.$4={streams:{}};this.$5=b("FBRTCLogger").getInstance();this.$6=!1;this.$7=!0;this.$8=!1;this.$9="passive";this.$10=new(b("FBRTCMessageSender"))();this.$15=new(b("FBRTCIceCache"))();this.$16=!1;this.$17=[];this.$18=!1;this.$21=null;this.$22=null;this.$24=new(b("RTCStreamDurationTracker"))("video");this.$25=new(b("RTCStreamDurationTracker"))("video");this.$26=new(b("RTCStreamDurationTracker"))("screen");this.$27=!1;this.$28=new(b("RTCPeerConnectionQueue"))();this.$31=!1;this.$49=function(a){a=a.candidate;a&&c.$62(a)};this.$50=function(a){a=a.target;a=a.iceConnectionState;c.$33("RTCP2PProtocolHandler_PC_iceconnectionstatechange: "+a);var d=b("RTCCallStore").getState();d=d.callSummary;d&&(d.setPCIsConnected(a==="completed"||a==="connected"),d.save(b("FBRTCCallSummaryStore").getInstance()));(c.$22==="disconnected"||c.$22==="failed")&&a==="connected"&&c.$32("connection recovery",c.$22);c.$32("ICE connection state change",a);b("clearTimeout")(c.$21);switch(a){case"checking":c.$8=!0;break;case"connected":case"completed":c.$63();c.$64();c.$65();break;case"failed":c.$21=b("setTimeout")(function(){if(b("RTCConfig").CollaborationBrowserConfig.ICE_recovery&&b("FBRTCConfig").isVCEndpointCall()){c.$66("ICE failure");return}c.$61(new Error("ICE failed"));b("RTCP2PCallActions").setConnectionStatus("DISCONNECTED")},b("RTCConfig").CollaborationBrowserConfig.ICE_failed_timeout);break;case"disconnected":c.$21=b("setTimeout")(function(){c.$36(i.CONNECTION_DROPPED,!1,!0,!1)},b("RTCConfig").CollaborationBrowserConfig.ICE_disconnected_timeout);break;case"closed":break}};this.$69=function(){var a=c.$3.getCreatedIceCandidates();for(var b=0;b<a.length;b++)c.$62(a[b])};this.$51=function(a){a=a.target;a=a.iceGatheringState;c.$33("RTCP2PProtocolHandler_PC_icegatheringstatechange: "+a);c.$32("ICE gathering state change",a)};this.$52=function(a){var b=a.errorCode,d=a.errorText,e=a.hostCandidate;a=a.url;c.$70("RTCP2PProtocolHandler: PC icecandidateerror "+b+": "+d+". candidate: "+e);c.$32("ICE candidate error",{errorCode:b,errorText:d,hostCandidate:e,url:a})};this.$71=function(){var a;c.$23?a=i.UNSUPPORTED_VERSION:a=i.OTHER_NOT_CAPABLE;c.$36(a,!1,!0,!1,"TimedOut")};this.$55=b("debounce")(function(d){var e=d.target;c.$32("offer renegotiation",{iceConnectionState:e.iceConnectionState,isNegotiationExpected:c.$7});if(e.iceConnectionState==="closed")return;else if(!c.$7){c.$32("offer renegotiation","ignore");return}else if(!b("RTCP2PCallEscalator").isNegotiationAllowed()){c.$32("offer renegotiation","not allowed - escalating");return}else if(c.$6){c.$32("offer renegotiation","retry");b("setTimeout")(function(){return c.$55(d)},100);return}c.$7=!1;var f=[];if(e.signalingState==="stable"){if(c.$8){e=b("RTCP2PCallStore").getState();e=e.signalingExperiments;if(!e.support("sdp_update"))c.internalResetConnection(),f.push("new offer");else{e=a.supportMultipleStreams();f.push("SDP update",e?"plan B":null)}c.$9="passive"}c.$32("offer renegotiation","create offer");c.$67().then(function(a){if(a.strongDiff(c.$3.getLocalDescription())){c.$32("offer renegotiation",f);return a}return null}).then(function(a){a&&(c.$8&&b("RTCP2PCallActions").setConnectionStatus("RECONNECTING"),c.$68(a)),c.$9="active"})["catch"](function(a){c.$61(new Error("Failed to create offer onNegotiationNeeded: "+a.message))})}},50);this.$56=function(d){if(c.$27){c.$28.push("add",function(){return c.$56(d)});return}var e=d.stream,f=c.$72(e),g=c.$1;f===b("FBRTCConstants").StreamType.SCREEN_CONTENT?(b("RTCCallActions").addRemoteScreenStream(e,g),!a.supportMultipleStreams()&&e.getAudioTracks().length>0&&c.$25.track(e)):(b("FBRTCUserSettings").updateForRemoteStream(e),b("RTCCallActions").addRemoteStream(e,g),c.$25.track(e),b("RTCP2PCallStore").addListener(b("debounce")(function(){b("RTCP2PCallStore").getState().callType!==b("RTCCallType").AUDIO_ONLY&&c.$63()},50)));c.$18=!0;while(c.$17.length>0)c.$73(c.$17.shift());c.$32("remote stream: added",e)};this.$57=function(a){a=b("RTCCallStore").getState().remoteUsers.first();a&&!a.isVideoMuted()&&(b("RTCCallActions").toggleMuteRemoteVideo(!1,a.FBID),c.$32("on media track event",{action:"toggleMuteRemoteVideo",muted:!1,remoteUserID:a.FBID}))};this.$58=function(a){if(c.$27){c.$28.push("remove",function(){return c.$58(a)});return}var d=a.stream,e=c.$72(d),f=c.$1;if(e===b("FBRTCConstants").StreamType.SCREEN_CONTENT){b("RTCCallActions").removeRemoteScreenStream(d,f);e=b("RTCCallStore").getState().remoteUsers.first();if(e){e=e.streams.first();e&&c.$25.track(e)}}else b("RTCCallActions").removeRemoteStream(d,f);c.$32("remote stream: removed",d)};this.$34=function(a){c.$33("RTCP2PProtocolHandler_Received_TURN_Creds"),c.$32("TURN credentials received",a),b("FBRTCPCConfig").setTurnCredentials(a),s(function(b){return b.setRelayIP(a.ip)})};this.$35=function(){c.$5.logError(c.$1,c.$2,"Failed to get turn creds"),c.$36(i.CLIENT_ERROR,!1,!b("RTCP2PCallStore").isCaller(),!1,"NoTurnCreds")};this.$42=function(a,b){c.$36(a,!1,!1,!1,b.toString())};this.$41=function(a,b){var d=b.call_id;if(c.$81()){c.$5.logError(c.$1,c.$2,"Message sent after call ended: "+b.type);return}if(c.$1!==a||c.$2!==d)return;s(function(a){return a.onMessageSent(b)});c.$32("message sent",b)};this.$43=function(a){a=a.message+"; "+a.stackFrames[0].identifier;c.$5.logError(c.$1,c.$2,"JSError: "+a)};this.$32("call controller init");this.$33("RTCP2PProtocolHandler_constructed")}var c=a.prototype;c.init=function(a,c){this.$1=a;this.$2=c;this.$33("RTCP2PProtocolHandler_init_call");if(!b("RTWebExperiments").passOfferWithWindowMessages()){a=b("FBRTCLocalMessageQueue").getPeerOfferFromStorage(this.$1);this.$32("local message queue updates",{action:"getOffer",cachedOffer:a,callID:this.$2});if(a){this.$32("call: try","not ready");c=new(b("FBRTCMessage"))(a);b("RTCP2PCallActions").processMessage(c)}}return this};c.setPreserveLocalStream=function(a){this.$30=a;return this};c.fetchTURNCredentials=function(){if(b("FBRTCConfig").isVCEndpointCall()){this.$33("RTCP2PProtocolHandler_skip_TURN_discovery");return b("Promise").resolve()}this.$32("call: try","not ready");return b("FBRTCTurnDiscovery").requestTurnCreds(this.$2.toString(),this.$1).then(this.$34,this.$35)};c.endCall=function(a,c,d){a===void 0&&(a=i.HANGUP_CALL),c===void 0&&(c=""),d===void 0&&(d=!1),b("RTCCallActions").hangup(a,c),this.$36(a,!1,!0,d,c)};c.startCall=function(a,c){var d=this,e=b("RTCP2PCallStore").isCaller();this.$32("call: start process",{callTrigger:a,userCallType:this.$37(),isCaller:b("RTCP2PCallStore").isCaller()});this.$3=this.$38();this.$39();this.$28=new(b("RTCPeerConnectionQueue"))();this.$32("local message queue updates",{action:"getOffer",offer:c});var f=null;c?(this.$19=new(b("FBRTCMessage"))(c),b("FBRTCMessageDedup").check(this.$1,this.$19.callID,this.$19.msgID),f=!1):(f=!0,b("RTCP2PCallActions").setIsCaller(f));e&&!f&&this.handleCallCollision(this.$19,!1);f!==e&&(this.$32("caller mismatch",{initialValue:e,actualValue:f}),e?this.$33("RTCP2ProtocolHandler_offer_mismatch_caller_found_unexpected_cached_offer"):this.$33("RTCP2PProtocolHandler_offer_mismatch_callee_did_not_find_cached_offer"));this.$7=f;this.$19 instanceof b("FBRTCMessage")&&b("RTCP2PCallActions").processMessage(this.$19);this.$40(a,f);this.$10=new(b("FBRTCMessageSender"))();this.$10.onMessageSent=this.$41;this.$10.onSendFailure=this.$42;this.$29=new(b("RTCP2PCallEscalator"))(this.$1,this.$2,this.$10);(h||(h=b("ErrorPubSub"))).addListener(this.$43,!0);b("FBRTCMessageListener").setMessageHandler(function(a){d.$44(a)});b("FBRTCConfig").isVCEndpointCall()&&b("FBRTCMessageListener").setOneVCMessegeHandler(function(a){d.$45(a)});this.$46();b("RTCP2PCallActions").setConnectionStatus("CONTACTING");b("RTCCallActions").call([this.$1],this.$3)};c.$40=function(a,c){c=b("FBRTCCallSummary").restoreOrInitialize(b("FBRTCCallSummaryStore").getInstance(),this.$1,this.$2,c,this.$19,a);c.setCallType(b("RTCP2PCallStore").getState().callType===b("RTCCallType").AUDIO_ONLY?j.VOIP:j.DIRECT_VIDEO);c.setActiveConnection("p2p");this.$47(c);b("RTCCallActions").setCallSummary(c)};c.$47=function(a){b("promiseDone")(b("FBRTCStatsHelpers").getBatteryStats(),function(c){a.addExtraInfo(b("FBRTCLogger").Key.BATTERY_START,c.level)})};c.startScreenStream=function(c){if(!a.supportMultipleStreams()){var d=b("RTCCallStore").getState();d=d.localUser;d=d.streams.first();b("RTCUtils").transferAudioTracks(c,d)}b("RTCCallActions").addLocalScreenStream(c)};c.stopScreenStream=function(c){var d=b("RTCCallStore").getState();d=d.localUser;if(!d.screenStreams.includes(c))return;if(!a.supportMultipleStreams()){d=d.streams.first();b("RTCUtils").transferAudioTracks(d,c)}b("RTCCallActions").removeLocalScreenStream(c);b("RTCUtils").stopMediaStream(c)};c.updateScreenStream=function(a,c){b("RTCUtils").transferAudioTracks(c,a),b("RTCCallActions").replaceLocalScreenStream(a,c),b("RTCUtils").stopMediaStream(a)};c.$48=function(b){if(!a.supportMultipleStreams()&&b.hasScreenStream())return!0;else return!b.isVideoMuted()};c.$38=function(){var a=this,c=b("RTCP2PCallStore").getState();c=c.isPeerOnMobile;c=new(b("FBRTCPeerConnection"))(k.P2P,b("FBRTCPCConfig").getConfig(),b("FBRTCPCConfig").getConstraints(c));var d,e=null,f,g;b("RTCCallStore").addListener(b("debounce")(function(){var c=b("RTCCallStore").getState();c=c.localUser;if(!c||c===d)return;d=c;var h=a.$48(c);e!==h&&e!==null&&a.$10&&a.$10.sendMuteStateUpdate(a.$1,a.$2,h);e=h;h=c.streams;c=c.screenStreams;var i=c!==g,j=h!==f;j||i?(f=h,g=c,a.$39(i)):a.$24.update()},50));b("FBRTCConfig").isVCEndpointCall()&&c.createDataChannel("noop");c.addEventListener("icecandidate",this.$49);c.addEventListener("iceconnectionstatechange",this.$50);c.addEventListener("icegatheringstatechange",this.$51);c.addEventListener("icecandidateerror",this.$52);c.addEventListener("connectionstatechange",this.$53);c.addEventListener("signalingstatechange",this.$54);c.addEventListener("negotiationneeded",this.$55);c.addEventListener("addstream",this.$56);c.addEventListener("track",this.$57);c.addEventListener("removestream",this.$58);c.addEventListener("datachannel",this.$59);this.$60(c);return c};a.supportMultipleStreams=function(){var a=b("RTCP2PCallStore").getState();a=a.signalingExperiments;return a.support("multiple_streams_plan_b")||a.support("multiple_streams_unified")};c.$39=function(c){c===void 0&&(c=!1);if(this.$3.getSignalingState()==="closed")return;var d=b("RTCCallStore").getState();d=d.localUser;if(!d)return;var e=d.getStream();d=d.getScreenStream();var f=[];a.supportMultipleStreams()?(d?(f.push(d),this.$26.track(d)):this.$26.update(),e?(f.push(e),this.$24.track(e)):this.$24.update()):d?(this.$26.track(d),this.$24.track(d),f.push(d)):(this.$26.update(),e&&(this.$24.track(e),f.push(e)));if(b("FBRTCPeerConnection").isTrackAPISupported()&&b("RTWebClientFeatureGating").restartVideoWithTrackAPI()&&f.length===1){d=b("FBRTCPeerConnectionHelper").resetLocalStreamWithTrackAPI(this.$3,f[0],c);this.$7=this.$7||d}else{e=b("FBRTCPeerConnectionHelper").resetLocalStreams(this.$3,f);this.$7=this.$7||e}};c.updateAddedTracksForFirefoxVideoEscalation=function(c){b("FBRTCPeerConnection").doesBrowserSupportAddTrack()||b("FBLogger")("rtc_www").mustfix("This function must be called within Firefox context"),this.$7=!0,this.$3.addStream(c),a.replaceLocalStream(c)};c.$61=function(a){this.$36(i.WEBRTC_ERROR,!1,!0,!1,a.message)};c.$66=function(a){var c=this;this.$6=!0;this.$7=!1;this.$9="passive";this.internalResetConnection();this.$33("RTCP2PProtocolHandler_connection_recovery_"+a);this.$32("connection recovery",a);this.$67().then(function(a){b("RTCP2PCallActions").setConnectionStatus("RECONNECTING"),c.$68(a),c.$9="active"})["catch"](function(b){c.$61(new Error("Failed recovering from "+a))})};c.$67=function(){var a=!b("RTCP2PCallStore").isAudioOnly()||b("RTCP2PCallEscalator").initVideoInAudioCall(),c={ADD_AUDIO_NACK:b("RTCSignalingExperiments").shouldEnableAudioNack(),DISABLE_OPUS_STEREO:b("RTWebClientFeatureGating").disableOpusStereo()};return this.$3.createOffer({offerToReceiveAudio:!0,offerToReceiveVideo:a},c)};c.$62=function(a){var b=a.sdpMid;if(b!=null){b=this.$3.transformLocalIceCandidateMid(b);if(window.RTCIceCandidate){var c=a.sdpMLineIndex,d=a.candidate;a=new RTCIceCandidate(babelHelpers["extends"]({candidate:d,sdpMid:b},c!=null?{sdpMLineIndex:c}:null))}else a.sdpMid=b}this.$10.sendIceCandidate(this.$1,this.$2,a)};c.$53=function(a){a.target};c.$54=function(a){a.target};c.internalResetConnection=function(){var a=this;this.$7=!1;var c=this.$1,d=b("RTCCallStore").getState().remoteUsers.first(),e=d.streams,f=d.screenStreams;this.$27=!0;this.$28.clear("add");this.$28.push("remove",function(){for(var a=e,d=Array.isArray(a),g=0,a=d?a:a[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var h;if(d){if(g>=a.length)break;h=a[g++]}else{g=a.next();if(g.done)break;h=g.value}h=h;b("RTCCallActions").removeRemoteStream(h,c)}for(var h=f,g=Array.isArray(h),d=0,h=g?h:h[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){if(g){if(d>=h.length)break;a=h[d++]}else{d=h.next();if(d.done)break;a=d.value}a=a;b("RTCCallActions").removeRemoteScreenStream(a,c)}});this.$3.reset().then(function(){a.$27=!1,a.$28.drain()})["catch"](function(b){a.$61(new Error("Failed to reset peer connection: "+b.message))});b("FBRTCConfig").isVCEndpointCall()&&this.$3.createDataChannel("noop")};c.$72=function(a){var c=b("FBRTCConstants").StreamType;try{switch(this.$4.streams[a.id].type){case c.SCREEN_CONTENT:return c.SCREEN_CONTENT;case c.AUDIO_VIDEO:return c.AUDIO_VIDEO;case c.AUDIO_ONLY:return c.AUDIO_ONLY;default:throw Error("no known stream type found, detecting")}}catch(b){return a.getVideoTracks().length>0?c.AUDIO_VIDEO:c.AUDIO_ONLY}};c.$63=function(){this.$24.isStarted()?this.$24.update():this.$24.start();var a=b("RTCP2PCallStore").getState();a=a.callType;a!==b("RTCCallType").AUDIO_ONLY&&(this.$25.isStarted()?this.$25.update():this.$25.start());this.$26.isStarted()?this.$26.update():this.$26.start()};c.$64=function(){var a=b("RTCP2PCallStore").getState().connectionStatus;if(a==="ESCALATING_TO_BJN")return;b("RTCP2PCallActions").setConnectionStatus("CONNECTED");this.$31||(this.$31=!0,this.$10.sendClientReportedEvent(this.$1,this.$2,m.MEDIA_CONNECTED),this.$33("RTCP2PProtocolHandler_first_time_media_connected"));s(function(a){a.onCallConnected(),a.onNetworkReady()})};c.$59=function(a){a.channel};c.startLocalVideoTracker=function(a){this.$24.track(a)};c.updateLocalVideoTracker=function(){this.$24.update()};a.initStream=function(c,d,e){b("RTWebUserActionLogger").startTimer("RTCP2PProtocolHandler_initStream");return a.internalInitStream(c,d,e).then(function(a){b("RTWebUserActionLogger").logStopTimer({timerName:"RTCP2PProtocolHandler_initStream",checkpointName:"RTCP2PProtocolHandler_initStream_success"});return a})["catch"](function(a){b("RTWebUserActionLogger").logStopTimer({timerName:"RTCP2PProtocolHandler_initStream",checkpointName:"RTCP2PProtocolHandler_initStream_failed"});throw a})};a.internalInitStream=function(c,d,e){var f=b("RTCP2PCallStore").getState();f=f.isPeerOnMobile;var g=a.getDefaultVideoQuality();f&&(g=l.LQ_VIDEO);f=!c&&b("RTCP2PCallEscalator").initVideoInAudioCall();g=b("RTCUserMediaConstraints").video(g,e||"");var h=c||f?babelHelpers["extends"]({aspectRatio:{ideal:Number((16/9).toFixed(10))}},r(g)):!1;return b("RTCUtils").getUserMediaWithAudioFallback({audio:b("RTCUserMediaConstraints").audio(d||""),video:h},{optionalConstraintsOnly:!1,supportFilteredStreams:c&&b("RTWebClientFeatureGating").canUseP2PVideoFilters()}).then(function(a){a.getVideoTracks().forEach(function(a){a.enabled=c});if(c)try{var b=a.getVideoTracks();b=b[0];b||q(function(a){return a.log("audio fallback",{eventDetails:{videoConstraints:h}})})}catch(a){q(function(b){return b.log("init stream error",{eventDetails:{error:a.name,message:a.message,videoConstraints:h}})})}return a})};a.replaceLocalStream=function(a,c){c===void 0&&(c=!1);var d=b("RTCCallStore").getState().localUser.streams.first();b("RTCCallActions").replaceLocalStream(d,a);c&&b("RTCUtils").stopMediaStream(d)};c.escalateToMultiway=function(){var a=b("RTCP2PCallStore").getState(),c=a.callType,d=a.offerEscalationSupport;a=a.escalationConferenceName;if(d&&a){s(function(a){return a.setEscalationInitiated()});d=c!==b("RTCCallType").AUDIO_ONLY&&(b("RTCCallStore").hasRemoteVideo()||b("RTCCallStore").hasLocalVideo());c=new(b("RTCGroupCallEscalator"))(a,d,this.$1,this.$2);c.startEscalationToMultiway()}};c.handleSwitchToMultiway=function(){var a=b("RTCP2PCallStore").getState(),c=a.callType,d=a.offerEscalationSupport;a=a.escalationConferenceName;this.$6=!1;if(d&&a){s(function(a){return a.setReceivedEscalationRequest()});d=c!==b("RTCCallType").AUDIO_ONLY&&(b("RTCCallStore").hasRemoteVideo()||b("RTCCallStore").hasLocalVideo());c=new(b("RTCGroupCallEscalator"))(a,d,this.$1,this.$2);c.startEscalationToMultiway()}};c.$74=function(a,c){var d=b("gkx")("678353"),e=a&&d&&b("FBRTCSupport").isGroupCallWebtrcSupported();this.$13=e;this.$14=c;b("RTCP2PCallActions").setMultiwayEscalationSupport(e,c);s(function(a){a.setConferenceName(c),e&&a.setEscalationAvailable()})};c.$46=function(){b("FBRTCUrlManager").onCallStarted(this.$1);if(this.$19){this.$6=!0;this.$7=!1;var a=this.$19.msg,c=a.sdp,d=a.attributes,e=a.offer_escalation_support;a=a.escalation_conference_name;b("RTCP2PCallActions").setRemoteSignalingExperiments(this.$19.getSignalingExperiments());this.$74(!!e,a);this.onReceivedRemoteSDP(c,"offer",d);b("RTWebExperiments").passOfferWithWindowMessages()||b("FBRTCLocalMessageQueue").clearPeerOfferFromStorage(this.$1);this.$32("local message queue updates",{action:"removeOffer",offer:this.$19,callID:this.$2});this.$19=null}this.$32("call: try",{initialOffer:this.$19})};c.$68=function(a){var c=this;this.$6=!0;return this.$3.setLocalDescription(a).then(function(a){return a.toDesc()}).then(function(a){var b=a.sdp;a=a.type;a==="offer"&&(b=c.$3.transformOfferSdp(b));return{type:a,sdp:b}}).then(function(a){var d=a.sdp;a=a.type;switch(a){case"offer":b("RTCP2PCallStore").getState().signalingExperiments.support("sdp_update")&&b("RTCCallStore").getState().callInfo.conferenceState==="CONNECTED"?c.$75(d):c.$76(d);c.$16=!1;break;case"answer":c.$77(d);break;default:break}})["catch"](function(a){c.$61(new Error("Failed to set local description: unexpected SDP type"))})};c.$78=function(){return{streams:this.$79()}};c.$79=function(){var a={},c=b("RTCCallStore").getState();c=c.localUser.screenStreams;for(var d=this.$3.getLocalStreams(),e=Array.isArray(d),f=0,d=e?d:d[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var g;if(e){if(f>=d.length)break;g=d[f++]}else{f=d.next();if(f.done)break;g=f.value}g=g;var h=c.includes(g)?b("FBRTCConstants").StreamType.SCREEN_CONTENT:g.getVideoTracks().length?b("FBRTCConstants").StreamType.AUDIO_VIDEO:b("FBRTCConstants").StreamType.AUDIO_ONLY;a[g.id]={type:h}}return a};c.$75=function(a){var c=b("RTCCallStore").getState();c=c.localUser;this.$10.sendSdpUpdate(this.$1,this.$2,a,!b("RTCP2PCallStore").isAudioOnly()&&!c.isVideoMuted(),this.$78())};c.$76=function(a){var c=this,d=this.$8?b("FBRTCConstants").PayloadType.PCRESTART_OFFER:b("FBRTCConstants").PayloadType.OFFER,e=b("RTCCallStore").getState();e=e.callSummary;e=e?e.getCallTrigger():"";this.$11=new(b("FBRTCRetriableMessage"))(this.$10);this.$11.addListener("sendingRetry",this.$69);this.$11.addListener("timeoutFailure",this.$71);this.$11.sendMessage(d,this.$1,this.$2,{sdp:a,hasVideo:!b("RTCP2PCallStore").isAudioOnly(),attributes:this.$78(),callTrigger:e});this.$20=b("setTimeout")(function(){c.$36(i.NO_ANSWER_TIMEOUT,!1,!0,!1,"NoAnswerTimeout")},n)};c.$80=function(a){if(!Object.prototype.hasOwnProperty.call(a,"videoon"))return;a=!a.videoon;b("RTCCallActions").toggleMuteRemoteVideo(a,this.$1);for(var a=this.$3.getRemoteStreams(),c=Array.isArray(a),d=0,a=c?a:a[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var e;if(c){if(d>=a.length)break;e=a[d++]}else{d=a.next();if(d.done)break;e=d.value}e=e;if(e.getAudioTracks().length>0){this.$32("remote steam: mute toggled",e);return}}this.$25.update()};c.$77=function(a){this.$12=new(b("FBRTCRetriableMessage"))(this.$10);this.$12.addListener("sendingRetry",this.$69);var c={escalationConferenceName:this.$14,negotiatedEscalationSupport:this.$13};this.$12.sendMessage(b("FBRTCConstants").PayloadType.ANSWER,this.$1,this.$2,{sdp:a,hasVideo:!b("RTCP2PCallStore").isAudioOnly(),attributes:this.$78(),multiwayInfo:c})};c.processQueuedMessages=function(){var a=this;b("FBRTCLocalMessageQueue").drainQueue(this.$1,function(b){a.$44(b,{skipDupeCheck:!0})})};c.$44=function(a,c){var d;try{d=new(b("FBRTCMessage"))(a)}catch(b){this.$5.logError(this.$1,this.$2,"Unknown data: "+JSON.stringify(a));return}this.$5.logReceivedMessage(d.peerID,d.callID,d.msg);this.$32("message received",d.msg);if(this.$81()){this.$70("RTCP2PProtocolHandler: Ignoring message (call ended): "+d.msgID);return}if(!(c==null?void 0:c.skipDupeCheck)&&!b("FBRTCMessageDedup").check(d.peerID,d.callID,d.msgID)){this.$70("RTCP2PProtocolHandler: Ignoring message (duplicate): "+d.msgID);return}if(b("RTCCallStore").getState().callInfo.conferenceState==="AWAITING_USER_START"){this.$70("RTCP2PProtocolHandler: Ignoring message (awaiting user start): "+d.msgID);return}if(this.$1&&this.$1!==d.peerID){d.isOffer()&&this.$82(d);this.$70("RTCP2PProtocolHandler: Ignoring message (different peer): "+d.msgID);return}if(!d.isForCall(this.$2,this.$14)){this.$70("RTCP2PProtocolHandler: Ignoring message (different call): "+d.msgID+"(callID: "+d.callID+")");return}this.$2&&this.$2===d.callID&&s(function(a){return a.onFullMessageReceived(d)});a=b("RTCGroupCallEscalationStore").getState().inProgress;switch(d.msgType){case b("FBRTCConstants").PayloadType.ICERESTART_OFFER:case b("FBRTCConstants").PayloadType.PCRESTART_OFFER:this.internalResetConnection();this.$83(d);break;case b("FBRTCConstants").PayloadType.OFFER:this.$83(d);break;case b("FBRTCConstants").PayloadType.ANSWER:case b("FBRTCConstants").PayloadType.ICERESTART_ANSWER:case b("FBRTCConstants").PayloadType.PCRESTART_ANSWER:b("RTCP2PCallActions").setRemoteSignalingExperiments(d.getSignalingExperiments());this.$84(d);break;case b("FBRTCConstants").PayloadType.SDP_UPDATE:this.$85(d);break;case b("FBRTCConstants").PayloadType.ICE_CANDIDATE:this.$86(d);break;case b("FBRTCConstants").PayloadType.HANGUP:this.$87(d);break;case b("FBRTCConstants").PayloadType.OFFER_ACK:this.$88(d);break;case b("FBRTCConstants").PayloadType.OFFER_NACK:this.$23=!0;break;case b("FBRTCConstants").PayloadType.ANSWER_ACK:this.$89();break;case b("FBRTCConstants").PayloadType.MSG_ACK:this.$90(d);break;case b("FBRTCConstants").PayloadType.SET_VIDEO:this.$91(d);break;case b("FBRTCConstants").PayloadType.SWITCH_TO_MULTIWAY:a||this.handleSwitchToMultiway();break;case b("FBRTCConstants").PayloadType.VIDEO_REQUEST:case b("FBRTCConstants").PayloadType.ACK:case b("FBRTCConstants").PayloadType.OK:case b("FBRTCConstants").PayloadType.PING:case b("FBRTCConstants").PayloadType.PING_ACK:case b("FBRTCConstants").PayloadType.OTHER_DISMISS:case b("FBRTCConstants").PayloadType.PRANSWER:break;default:break}this.$29.parseMessage(d)};c.$45=function(a){switch(a.msg_type){case"bjn_escalating":var c=b("RTCP2PCallStore").getState().connectionStatus;b("RTCP2PCallActions").setConnectionStatus("ESCALATING_TO_BJN");b("setTimeout")(function(){b("RTCP2PCallActions").setConnectionStatus(c)},o);break;case"participants":b("RTCOneVCActions").storeParticipants(JSON.parse(a.payload).list);break;default:break}};c.$82=function(a){var c=a.peerID,d=a.callID;this.$33("RTCP2PProtocolHanlder_collision_offer_from_another_peer");var e=a.msg,f=new(b("FBRTCCallSummary"))({peerID:c,callID:d,isCaller:!1});f.setActiveConnection("p2p");f.onFullMessageReceived(a);f.setCallType(b("FBRTCSdpUtils").isVideoSupported(e.sdp)?j.DIRECT_VIDEO:j.VOIP);this.$10.sendOfferAck(c,d,e);f.onOfferAckSent(e);a=new(b("RTCEndCallReason"))(i.IN_ANOTHER_CALL);this.$92(c,d,a,!1);f.onCallEnded(a.getReasonID(),!1);f.save(b("FBRTCCallSummaryStore").getInstance())};c.$83=function(a){var c=a.msg;if(!b("RTWebExperiments").enableCallCollisionFix()){this.$2&&c.call_id!==this.$2&&this.$33("RTCP2PProtcolHandler_call_collision");var d=this.$3.getSignalingState();if(d!=="stable")return}if(c.calltype){this.$10.sendOfferNack(this.$1,c.call_id,c);return}this.$10.sendOfferAck(this.$1,c.call_id,c);this.$10.sendOtherDismiss(c.call_id);this.$93(c)?this.$94(a):this.$95(a)};c.resetCollisionSummary=function(a,c){var d=a.msg;s(function(a){a.onCallEnded(i.OTHER_INSTANCE_HANDLED,!1,!1,"call_collision"+(c?"_resetConnection":"_atStart"))});var e=new(b("FBRTCCallSummary"))({peerID:this.$1,callID:d.call_id,isCaller:!1});b("RTCCallActions").setCallSummary(e);s(function(c){c.setActiveConnection("p2p"),c.onFullMessageReceived(a),c.onOfferAckSent(d),c.setCallType(b("FBRTCSdpUtils").isVideoSupported(d.sdp)?j.DIRECT_VIDEO:j.VOIP),c.setCallTrigger("call_collision")})};c.handleCallCollision=function(a,c){this.$5.logEvent(this.$1,this.$2,"Handling offer collision");this.resetCollisionSummary(a,c);if(b("RTWebExperiments").enableCallCollisionFix()){this.$2=a.callID;a=a.msg;c?this.internalResetConnection():this.$10.sendOtherDismiss(a.call_id);b("RTCCallActions").callCollision(a.call_id.toString(),this.$1);this.$33("RTCP2PProtocolHandler_handling_call_collision"+(c?"_resetConnection":"_atStart"))}};c.$94=function(a){var c=a.msg;this.$80(c);this.$96();this.$97();this.$98();if(this.$2!==c.call_id){c=new(b("RTCEndCallReason"))(i.OTHER_INSTANCE_HANDLED);this.$92(this.$1,this.$2,c,!1);this.handleCallCollision(a,!0)}else this.$5.logEvent(this.$1,this.$2,"Handling offer refresh");this.$16=!1;this.$19=a;b("RTCP2PCallActions").processMessage(a);this.$46();this.$32("offer accepted",a.msgID)};c.$95=function(a){this.$5.logEvent(this.$1,this.$2,"Ignoring offer"),this.$32("offer ignored",a.msgID)};c.$85=function(a){var c=this,d=a.msg;b("RTCP2PCallActions").processMessage(a);this.$80(d);switch(this.$3.getSignalingState()){case"stable":this.onReceivedRemoteSDP(this.$99("offer",a),"offer",d.attributes);break;case"have-local-offer":this.onReceivedRemoteSDP(this.$99("answer",a),"answer",d.attributes).then(function(){return c.$100()})["catch"](function(a){c.$61(new Error("Failed to handle sdp update when signaling state is 'have-local-offer': "+a.message))});break;case"have-remote-offer":b("setTimeout")(function(){return c.$85(a)},1e3);break;case"have-local-pranswer":case"have-remote-pranswer":break;case"closed":break}this.$32("SDP update",[d.sdp,d.attributes])};c.$99=function(a,c){c=c.msg;var d=b("RTCP2PCallStore").getState();d=d.isPeerOnMobile;var e=b("RTCP2PCallStore").isCaller();return a==="offer"?!d&&e&&b("UserAgent").isBrowser("Firefox")?b("FBRTCSdpUtils").setDtlsRole(c.sdp,this.$9):c.sdp:b("FBRTCSdpUtils").setDtlsRole(c.sdp,d&&!e?"passive":this.$9)};c.$100=function(){this.$6=!1};c.$65=function(){var a=this.$3.getSenders().find(function(a){var b;return(a==null?void 0:(b=a.track)==null?void 0:b.kind)==="audio"&&typeof a.getParameters==="function"&&typeof a.setParameters==="function"});if(a==null)return;if(b("RTCSignalingExperiments").shouldCapAudioBitrate()){var c=b("FBRTCExperiment").getMediaQualityExperiments().getInt("max_audio_bitrate",0);if(c>0){var d=a.getParameters();d.encodings!=null?d.encodings[0].maxBitrate=c:d.encodings=[{maxBitrate:c}];b("Promise").resolve(a.setParameters(d))}else this.$5.logError(this.$1,this.$2,"received 0 for max audio bitrate")}};c.onReceivedRemoteSDP=function(a,c,d){var e=this;this.$101(d);d=b("RTCP2PCallStore").getState();d=d.isPeerOnMobile;d&&(a=b("FBRTCSdpUtils").setVideoBitrateConstraint(a));c==="answer"&&(a=this.$3.transformAnswerSdp(a));return this.$3.setRemoteDescription(new(b("RTCSessionDescription"))(k.P2P,{type:c,sdp:a})).then(function(){e.$16=!0,e.$15.drainCandidates(e.$1,e.$2,function(a){return e.$3.onReceivedRemoteIceCandidate(a)})}).then(function(){e.$64();return c!=="offer"?void 0:e.$3.createAnswer({DISABLE_OPUS_STEREO:b("RTWebClientFeatureGating").disableOpusStereo(),ADD_AUDIO_NACK:b("RTCSignalingExperiments").shouldEnableAudioNack()}).then(function(a){e.$68(a),e.$32("SDP update",{answer:a.toSdp()})})}).then(function(){e.$37()===b("RTCCallType").AUDIO_ONLY&&e.$10.sendMuteStateUpdate(e.$1,e.$2,!1)})["catch"](function(a){e.$61(a);throw a})};c.$101=function(a){if(a){var c=a.streams;this.$4=babelHelpers["extends"]({},this.$4,a,{streams:babelHelpers["extends"]({},this.$4.streams,c)});Object.keys(c).some(function(a){if(c[a].type===b("FBRTCConstants").StreamType.SCREEN_CONTENT){b("RTCCallActions").removeAllLocalScreenStreams(!0);return!0}return!1})}};c.$93=function(a){return a.call_id===this.$2?!0:Boolean((this.$20||!this.$19)&&(!this.$2||a.call_id!==this.$2)&&b("RTCP2PCallStore").isCaller()&&(!a.handlescollision||a.call_id<this.$2))};c.$84=function(a){var c=this,d=this.$3.getSignalingState();if(d!=="have-local-offer")return;d=a.msg;this.$74(!!d.negotiated_escalation_support,d.escalation_conference_name);this.$96();this.$97();this.$10.sendAnswerAck(this.$1,this.$2,d);b("RTCP2PCallActions").processMessage(a);b("RTCP2PCallActions").setConnectionStatus("CONNECTING");this.onReceivedRemoteSDP(d.sdp,"answer",d.attributes).then(function(){c.$100(),b("RTCCallActions").callSuccess(!0)})["catch"](function(a){c.$61(new Error("Failed to handle answer on receiving remote SDP"))});this.$80(d)};c.$90=function(a){var b=a.msg;this.$11&&this.$11.isAckMsg(b)?(s(function(b){b.onMsgAckReceived(a,!0)}),this.$88(a)):this.$12&&this.$12.isAckMsg(b)&&(s(function(b){b.onMsgAckReceived(a,!1)}),this.$89())};c.$88=function(a){b("RTCP2PCallActions").setConnectionStatus("RINGING"),s(function(c){c.setUploadLogLevel(b("FBRTCLocalUploadLogLevel").getUploadLogLevel(b("FBRTCConstants").convertToUploadLogLevel(a.msg.ull)))}),this.$96()};c.$89=function(){this.$98(),this.$100(),b("RTCCallActions").incomingCallSuccess()};c.$91=function(a){this.$18?this.$73(a):(this.$70("RTCP2PProtocolHandler: P2P message "+a.msgType+" queued for delay handling"),this.$17.push(a))};c.$73=function(a){b("RTCP2PCallStore").getState().isRemoteVideoSupported&&!b("RTCP2PCallStore").isAudioOnly()&&this.$80(a.msg)};c.$86=function(a){var b=this,c=a.msg;c.call_id===this.$2&&this.$16?this.$3.onReceivedRemoteIceCandidate(c)["catch"](function(a){b.$102(c)}):this.$102(c)};c.$102=function(a){this.$15.cacheCandidate(this.$1,a.call_id,a)};c.$87=function(a){a=a.msg;var b=a.call_id,c=a.reason;a=a.subreason;b===this.$2?this.$36(c,!0,!1,!1,a):(this.$5.logError(this.$1,this.$2,"Receiving hangup for a different call: "+b.toString()),this.$32("hangup callID missmatch",b.toString()))};c.$36=function(a,c,d,e,f){var g=this,h=new(b("RTCEndCallReason"))(a).setSubreason(f).setRemoteEnded(c);b("RTCCallActions").setEndCallReason(h);b("RTCCallNUXActions").refreshNUXState();a=b("RTCP2PCallEscalationStore").getState().inProgress;a&&b("RTCP2PCallEscalationActions").cancel();this.$96();this.$97();this.$98();if(this.$81()){this.$5.logError(this.$1,this.$2,"Ending an already-ended call");return}this.$5.logCallAction(this.$1,this.$2,b("FBRTCLogger").CallAction.END_CALL,h.toStrName());this.$32("call: ended",{reason:h.toStrName(),reasonID:h.getReasonID(),subReason:h.getSubreason(),isRemoteEnded:c,userCallType:this.$37(),isCaller:b("RTCP2PCallStore").isCaller()});this.$33("callSummary onCallEnded reason "+h.toStrName()+" subreason "+((f=h.getSubreason())!=null?f:""));d&&this.$92(this.$1,this.$2,h,e);this.$24.stop();this.$25.stop();this.$26.stop();this.$3&&this.$3.close();b("RTCCallActions").hangupSuccess();this.$30||b("RTCCallActions").removeAllLocalStreams(!0);b("RTCCallActions").removeAllLocalScreenStreams(!0);b("RTCCallActions").removeAllRemoteStreams(this.$1);b("RTCP2PCallActions").setConnectionStatus("DISCONNECTED");s(function(a){a.setCallType(b("RTCP2PCallEscalationStore").getState().callType),a.setVideoDurations(g.$24.getDuration(),g.$25.getDuration()),a.setScreenDuration(g.$26.getDuration()),a.onCallEnded(h.getReasonID(),c,null,h.getSubreason()),g.$33("logged end call to call summary")});a=b("RTCCallStore").getState();f=a.callSummary;this.$33("RTCCallStore call summary has end call reason: "+f.getEndCallReason());this.$33("Getting call summary with callID: "+this.$2+" and peerId "+this.$1);d=b("FBRTCCallSummaryStore").getInstance().retrieveCallSummary(this.$1,this.$2);d!=null?this.$33("CallSummaryStore has end call reason: "+d.getEndCallReason()):this.$33("Could not find call summary");h.getReasonID()===i.HANGUP_CALL&&h.getSubreason()==="CallReset"&&c&&(this.$33("window.close call window was remotely reset"),b("RTCP2PCallWindowHandler").close())};c.$37=function(){var a=b("RTCCallStore").getState();a=a.localUser;return a.isVideoMuted()&&a.isAudioMuted()?b("RTCCallType").NO_AUDIO_VIDEO:a.isVideoMuted()&&!a.isAudioMuted()?b("RTCCallType").AUDIO_ONLY:b("RTCCallType").AUDIO_VIDEO};c.shutDownP2PListenersForMultiwayEscalation=function(){var a=this;this.$96();this.$97();this.$98();this.$24.stop();this.$25.stop();this.$3&&this.$3.removeAllListeners();b("setTimeout")(function(){b("RTCGroupCallEscalationStore").logToP2PCallSummary(function(c){c.setCallType(b("RTCP2PCallEscalationStore").getState().callType),c.setVideoDurations(a.$24.getDuration(),a.$25.getDuration()),c.setScreenDuration(a.$26.getDuration()),c.onCallEnded(i.HANGUP_CALL,!1,!1,"multiway escalation")}),b("RTCCallActions").completeTransitionToMultiway()},100);this.destroy()};c.$92=function(a,b,c,d){if(!this.$10)return;this.$10.sendHangup(a,b,c.getReasonID(),d,c.getSubreason());this.$10.sendOtherDismiss(b)};c.$96=function(){this.$11&&this.$11.stopRetrying()};c.$98=function(){this.$12&&this.$12.stopRetrying()};c.$97=function(){this.$20&&b("clearTimeout")(this.$20),this.$20=null};c.$81=function(){return b("RTCCallStore").getState().callInfo.conferenceState==="TERMINATED"};c.$60=function(a){var c=this;q(function(d){d=d.logConnectionStats(function(){var c=a.getSignalingState();return c!=="closed"?a.getStats():b("Promise").reject("peer connection closed")},c.$1,c.$2);var e=d.start,f=d.stop;d=function b(d){d=d.target;d=d.iceConnectionState;(d==="completed"||d==="connected")&&(c.$33("RTCP2PProtocolHandler_call_connected"),c.$32("call: connected"),e(),a.removeEventListener("iceconnectionstatechange",b),a.addEventListener("iceconnectionstatechange",g))};var g=function b(c){c=c.target;c=c.iceConnectionState;c==="closed"&&(f(),a.removeEventListener("iceconnectionstatechange",b))};a.addEventListener("iceconnectionstatechange",d)})};c.$32=function(a,b){var c=this;q(function(d){return d.log(a,{peerID:c.$1,callID:c.$2,eventDetails:b})})};c.destroy=function(){this.$28.clear(),b("FBRTCMessageListener").removeMessageHandler(),b("FBRTCConfig").isVCEndpointCall()&&b("FBRTCMessageListener").removeOneVCMessageHandler(),(this.$10.onMessageSent=null,this.$10.onSendFailure=null)};c.generateEscalationRequestToken=function(a){return this.$29.generateRequestToken(a)};c.generateEscalationResponseToken=function(a,b){return this.$29.generateResponseToken(a,b)};a.getDefaultVideoQuality=function(){return b("FBRTCConfig").isVCEndpointCall()||b("FBRTCConfig").shouldUseHDVideoQuality()?l.HD_VIDEO:b("CurrentUser").isWorkUser()?l.SD_VIDEO:l.LQ_VIDEO};a.showRedialButton=function(){var a=b("RTCP2PCallStore").getState();a=a.endCallReason;var c=b("RTCCallStore").getState();c=c.callSummary;return a!=null&&(a.getReasonID()===i.IGNORE_CALL||a.getReasonID()===i.NO_ANSWER_TIMEOUT)||c.getCallDuration()<=p};a.showStarRating=function(){if(b("RTWebClientFeatureGating").shouldAlwaysShowStarRating()){var c=b("RTCP2PCallStore").getState(),d=c.endCallReason;c=c.wasConnected;return c&&d!=null&&d.getReasonID()===i.HANGUP_CALL}else return!a.showRedialButton()};c.$70=function(a){this.$5.logInfo(this.$1,this.$2,a)};c.$33=function(a){b("RTWebUserActionLogger").logCheckpoint({checkpoint:a,callId:this.$2?this.$2.toString():null,callType:"p2p"})};return a}();function q(a){if(!b("FBRTCConfig").isVCEndpointCall())return;b("Bootloader").loadModules(["CollabMessengerLogger"],a,"RTCP2PProtocolHandler")}function r(a){a instanceof Object||g(0,444);return a}function s(a){var c=b("RTCCallStore").getState();c=c.callSummary;a(c);c.save(b("FBRTCCallSummaryStore").getInstance())}e.exports=f}),null);
+__d("FBRTCMediaStatsReport",["FBRTCStatsHelpers"],(function(a,b,c,d,e,f){"use strict";a=function(){function a(a){return}var c=a.prototype;c.parseStatString=function(a,b){return a&&a[b]!=null&&a[b]!==""?a[b]:null};c.parseMediaStat=function(a,b){return a&&a[b]!=null&&a[b]!==""?Number(a[b]):null};c.getAccelerateRate=function(a){return null};c.getAudioBytesReceived=function(a){return null};c.getAudioBytesSent=function(a){return null};c.getAudioDecodingCNG=function(a){return null};c.getAudioDecodingNormal=function(a){return null};c.getAudioDecodingPLC=function(a){return null};c.getAudioDecodingPLCCNG=function(a){return null};c.getAudioJitter=function(a){return null};c.getAudioPacketsReceived=function(a){return null};c.getAudioPacketsReceivedLost=function(a){return null};c.getAudioPacketsSent=function(a){return null};c.getAudioPacketsSentLost=function(a){return null};c.getAudioReceivedRtt=function(a){return null};c.getAudioRecvKeys=function(){return[]};c.getAudioSendCodec=function(a){return null};c.getAudioSendKeys=function(){return[]};c.getAudioSendRtt=function(a){return null};c.getConnectionType=function(){return b("FBRTCStatsHelpers").UNKNOWN_CONNECTION};c.getDiscardRate=function(a){return null};c.getExpandRate=function(a){return null};c.getFramesDecoded=function(a){return null};c.getFramesEncoded=function(a){return null};c.getInboundQpSum=function(a){return null};c.getJitterBufferDelay=function(a){return null};c.getOutboundQpSum=function(a){return null};c.getPreemptiveExpandRate=function(a){return null};c.getVideoBweKeys=function(){return[]};c.getVideoBweRetransmitBitrate=function(a){return null};c.getVideoBweSendBandwidth=function(a){return null};c.getVideoBweTransmitBitrate=function(a){return null};c.getVideoBytesReceived=function(a){return null};c.getVideoBytesSent=function(a){return null};c.getVideoFrameHeightReceived=function(a){return null};c.getVideoFrameHeightSent=function(a){return null};c.getVideoFrameRateReceived=function(a){return null};c.getVideoFrameRateSent=function(a){return null};c.getVideoFrameWidthReceived=function(a){return null};c.getVideoFrameWidthSent=function(a){return null};c.getVideoPacketsReceived=function(a){return null};c.getVideoPacketsReceivedLost=function(a){return null};c.getVideoPacketsSent=function(a){return null};c.getVideoPacketsSentLost=function(a){return null};c.getVideoRecvCodec=function(a){return null};c.getVideoRecvCodecImplementationName=function(a){return null};c.getVideoRecvKeys=function(){return[]};c.getVideoSendCodec=function(a){return null};c.getVideoSendCodecImplementationName=function(a){return null};c.getVideoSendKeys=function(){return[]};c.getVideoSentRtt=function(a){return null};c.getVideoRecvCodecForConnection=function(){var a=this,b=null;this.getVideoRecvKeys().forEach(function(c){var d=a.getVideoRecvCodec(c);c=a.getVideoRecvCodecImplementationName(c);d!=null&&d!==""&&c!=null&&c!==""&&(b=d+c)});return b};c.getVideoSendCodecForConnection=function(){var a=this,b=null;this.getVideoSendKeys().forEach(function(c){var d=a.getVideoSendCodec(c);c=a.getVideoSendCodecImplementationName(c);d!=null&&d!==""&&c!=null&&c!==""&&(b=d+c)});return b};c.getAudioSendCodecForConnection=function(){var a=this,b=null;this.getAudioSendKeys().forEach(function(c){c=a.getAudioSendCodec(c);c!=null&&c!==""&&(b=c)});return b};return a}();e.exports=a}),null);
+__d("FBRTCChromeMediaStatsReport",["FBRTCMediaStatsReport","FBRTCStatsHelpers"],(function(a,b,c,d,e,f){"use strict";a=function(a){babelHelpers.inheritsLoose(c,a);function c(b){var c;c=a.call(this,b)||this;c.$FBRTCChromeMediaStatsReport1={};c.$FBRTCChromeMediaStatsReport2={};c.$FBRTCChromeMediaStatsReport3={};c.$FBRTCChromeMediaStatsReport4={};c.$FBRTCChromeMediaStatsReport5={};c.$FBRTCChromeMediaStatsReport6=[];if(b)for(var b=b.values(),d=Array.isArray(b),e=0,b=d?b:b[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var f;if(d){if(e>=b.length)break;f=b[e++]}else{e=b.next();if(e.done)break;f=e.value}f=f;f.type==="ssrc"&&f.audioOutputLevel!=null&&f.audioOutputLevel!==""?c.$FBRTCChromeMediaStatsReport1[f.id]=f:f.type==="ssrc"&&f.audioInputLevel!=null&&f.audioInputLevel!==""?c.$FBRTCChromeMediaStatsReport2[f.id]=f:f.type==="ssrc"&&f.mediaType==="video"?f.bytesReceived!=null?c.$FBRTCChromeMediaStatsReport3[f.id]=f:c.$FBRTCChromeMediaStatsReport4[f.id]=f:f.type==="VideoBwe"?c.$FBRTCChromeMediaStatsReport5[f.id]=f:f.type==="googCandidatePair"&&f.googActiveConnection!==null&&f.googActiveConnection==="true"&&c.$FBRTCChromeMediaStatsReport6.push(f)}return c}var d=c.prototype;d.getAudioSendKeys=function(){return Object.keys(this.$FBRTCChromeMediaStatsReport2)};d.getAudioRecvKeys=function(){return Object.keys(this.$FBRTCChromeMediaStatsReport1)};d.getVideoRecvKeys=function(){return Object.keys(this.$FBRTCChromeMediaStatsReport3)};d.getVideoSendKeys=function(){return Object.keys(this.$FBRTCChromeMediaStatsReport4)};d.getVideoBweKeys=function(){return Object.keys(this.$FBRTCChromeMediaStatsReport5)};d.getAudioBytesSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport2[a],"bytesSent")};d.getAudioDecodingPLC=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googDecodingPLC")};d.getAudioDecodingPLCCNG=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googDecodingPLCCNG")};d.getAudioDecodingCNG=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googDecodingCNG")};d.getAudioDecodingNormal=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googDecodingNormal")};d.getAudioPacketsSentLost=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport2[a],"packetsLost")};d.getAudioPacketsSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport2[a],"packetsSent")};d.getAudioSendCodec=function(a){return this.parseStatString(this.$FBRTCChromeMediaStatsReport2[a],"googCodecName")};d.getAudioSendRtt=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport2[a],"googRtt")};d.getAudioBytesReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"bytesReceived")};d.getAudioPacketsReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"packetsReceived")};d.getAudioPacketsReceivedLost=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"packetsLost")};d.getAudioReceivedRtt=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googRtt")};d.getVideoBytesReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"bytesReceived")};d.getVideoPacketsReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"packetsReceived")};d.getVideoPacketsReceivedLost=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"packetsLost")};d.getFramesDecoded=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"framesDecoded")};d.getInboundQpSum=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"qpSum")};d.getVideoFrameHeightReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"googFrameHeightReceived")};d.getVideoFrameRateReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"googFrameRateReceived")};d.getVideoFrameWidthReceived=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport3[a],"googFrameWidthReceived")};d.getFramesEncoded=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"framesEncoded")};d.getVideoBytesSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"bytesSent")};d.getVideoFrameHeightSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"googFrameHeightSent")};d.getVideoFrameRateSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"googFrameRateSent")};d.getVideoFrameWidthSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"googFrameWidthSent")};d.getVideoPacketsSent=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"packetsSent")};d.getVideoPacketsSentLost=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"packetsLost")};d.getVideoSentRtt=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"googRtt")};d.getOutboundQpSum=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport4[a],"qpSum")};d.getAudioJitter=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googJitterReceived")};d.getJitterBufferDelay=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googCurrentDelayMs")};d.getAccelerateRate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googAccelerateRate")};d.getPreemptiveExpandRate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googPreemptiveExpandRate")};d.getExpandRate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googExpandRate")};d.getDiscardRate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport1[a],"googSecondaryDiscardedRate")};d.getVideoBweRetransmitBitrate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport5[a],"googRetransmitBitrate")};d.getVideoBweSendBandwidth=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport5[a],"googAvailableSendBandwidth")};d.getVideoBweTransmitBitrate=function(a){return this.parseMediaStat(this.$FBRTCChromeMediaStatsReport5[a],"googTransmitBitrate")};d.getVideoRecvCodec=function(a){return this.parseStatString(this.$FBRTCChromeMediaStatsReport3[a],"googCodecName")};d.getVideoRecvCodecImplementationName=function(a){return this.parseStatString(this.$FBRTCChromeMediaStatsReport3[a],"codecImplementationName")};d.getVideoSendCodec=function(a){return this.parseStatString(this.$FBRTCChromeMediaStatsReport4[a],"googCodecName")};d.getVideoSendCodecImplementationName=function(a){return this.parseStatString(this.$FBRTCChromeMediaStatsReport4[a],"codecImplementationName")};d.getConnectionType=function(){var a=this,c=null;this.$FBRTCChromeMediaStatsReport6.some(function(d){c=b("FBRTCStatsHelpers").connectionType(a.parseStatString(d,"googLocalCandidateType"),a.parseStatString(d,"googTransportType"),a.parseStatString(d,"googRemoteCandidateType"),a.parseStatString(d,"googTransportType"));return c!==null});if(c!==null)return c;else return b("FBRTCStatsHelpers").UNKNOWN_CONNECTION};return c}(b("FBRTCMediaStatsReport"));e.exports=a}),null);
+__d("FBRTCMozMediaStatsReport",["FBRTCMediaStatsReport","FBRTCStatsHelpers","isFalsey"],(function(a,b,c,d,e,f){"use strict";a=function(a){babelHelpers.inheritsLoose(c,a);function c(b){var c;c=a.call(this,b)||this;c.$FBRTCMozMediaStatsReport1={};c.$FBRTCMozMediaStatsReport2={};c.$FBRTCMozMediaStatsReport3={};c.$FBRTCMozMediaStatsReport4={};c.$FBRTCMozMediaStatsReport5={};c.$FBRTCMozMediaStatsReport6={};for(var b=b.values(),d=Array.isArray(b),e=0,b=d?b:b[typeof Symbol==="function"?Symbol.iterator:"@@iterator"]();;){var f;if(d){if(e>=b.length)break;f=b[e++]}else{e=b.next();if(e.done)break;f=e.value}f=f;f.type==="inbound-rtp"&&f.mediaType==="audio"&&f.isRemote===!1?c.$FBRTCMozMediaStatsReport1[f.id]=f:f.type==="outbound-rtp"&&f.mediaType==="audio"&&f.isRemote===!1?c.$FBRTCMozMediaStatsReport2[f.id]=f:f.type==="inbound-rtp"&&f.mediaType==="video"&&f.isRemote===!1?c.$FBRTCMozMediaStatsReport3[f.id]=f:f.type==="outbound-rtp"&&f.mediaType==="video"&&f.isRemote===!1?c.$FBRTCMozMediaStatsReport4[f.id]=f:f.type==="candidate-pair"&&f.state==="succeeded"?c.$FBRTCMozMediaStatsReport6[f.id]=f:(f.type==="local-candidate"||f.type==="remote-candidate")&&(c.$FBRTCMozMediaStatsReport5[f.id]=f)}return c}var d=c.prototype;d.getAudioSendKeys=function(){return Object.keys(this.$FBRTCMozMediaStatsReport2)};d.getAudioRecvKeys=function(){return Object.keys(this.$FBRTCMozMediaStatsReport1)};d.getVideoRecvKeys=function(){return Object.keys(this.$FBRTCMozMediaStatsReport3)};d.getVideoSendKeys=function(){return Object.keys(this.$FBRTCMozMediaStatsReport4)};d.getAudioBytesSent=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport2[a],"bytesSent")};d.getAudioPacketsSent=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport2[a],"packetsSent")};d.getAudioBytesReceived=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"bytesReceived")};d.getAudioPacketsReceived=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"packetsReceived")};d.getAudioPacketsReceivedLost=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"packetsLost")};d.getAudioReceivedRtt=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"roundTripTime")};d.getFramesDecoded=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport3[a],"framesDecoded")};d.getFramesEncoded=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport4[a],"framesEncoded")};d.getVideoBytesReceived=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport3[a],"bytesReceived")};d.getVideoFrameRateReceived=function(a){var c=this.getFramesDecoded(a);return b("isFalsey")(c)?null:this.parseMediaStat(this.$FBRTCMozMediaStatsReport3[a],"framerateMean")};d.getVideoPacketsReceived=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport3[a],"packetsReceived")};d.getVideoPacketsReceivedLost=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport3[a],"packetsLost")};d.getVideoBytesSent=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport4[a],"bytesSent")};d.getVideoFrameRateSent=function(a){var c=this.getFramesEncoded(a);return b("isFalsey")(c)?null:this.parseMediaStat(this.$FBRTCMozMediaStatsReport4[a],"framerateMean")};d.getVideoPacketsSent=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport4[a],"packetsSent")};d.getAudioJitter=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"jitter")};d.getJitterBufferDelay=function(a){return this.parseMediaStat(this.$FBRTCMozMediaStatsReport1[a],"mozJitterBufferDelay")};d.getConnectionType=function(){var a=this,c=null;Object.keys(this.$FBRTCMozMediaStatsReport6).forEach(function(d){d=a.$FBRTCMozMediaStatsReport6[d];var e=a.parseStatString(d,"localCandidateId");d=a.parseStatString(d,"remoteCandidateId");e!==void 0&&e!==null&&d!==void 0&&d!==null&&(c=b("FBRTCStatsHelpers").connectionType(a.parseStatString(a.$FBRTCMozMediaStatsReport5[e],"candidateType"),a.parseStatString(a.$FBRTCMozMediaStatsReport5[e],"transport"),a.parseStatString(a.$FBRTCMozMediaStatsReport5[d],"candidateType"),a.parseStatString(a.$FBRTCMozMediaStatsReport5[d],"transport")));return c!==null});if(c!==null)return c;else return b("FBRTCStatsHelpers").UNKNOWN_CONNECTION};return c}(b("FBRTCMediaStatsReport"));e.exports=a}),null);
+__d("RTCWebMediaStreamsTypedLogger",["Banzai","GeneratedLoggerUtils","nullthrows"],(function(a,b,c,d,e,f){"use strict";a=function(){function a(){this.$1={}}var c=a.prototype;c.log=function(){b("GeneratedLoggerUtils").log("logger:RTCWebMediaStreamsLoggerConfig",this.$1,b("Banzai").BASIC)};c.logVital=function(){b("GeneratedLoggerUtils").log("logger:RTCWebMediaStreamsLoggerConfig",this.$1,b("Banzai").VITAL)};c.logImmediately=function(){b("GeneratedLoggerUtils").log("logger:RTCWebMediaStreamsLoggerConfig",this.$1,{signal:!0})};c.clear=function(){this.$1={};return this};c.getData=function(){return babelHelpers["extends"]({},this.$1)};c.updateData=function(a){this.$1=babelHelpers["extends"]({},this.$1,a);return this};c.setBytes=function(a){this.$1.bytes=a;return this};c.setCallID=function(a){this.$1.call_id=a;return this};c.setCallType=function(a){this.$1.call_type=a;return this};c.setConferenceName=function(a){this.$1.conference_name=a;return this};c.setFrameHeight=function(a){this.$1.frame_height=a;return this};c.setFrameWidth=function(a){this.$1.frame_width=a;return this};c.setFrames=function(a){this.$1.frames=a;return this};c.setFramesPerSecond=function(a){this.$1.frames_per_second=a;return this};c.setIsLocal=function(a){this.$1.is_local=a;return this};c.setJitter=function(a){this.$1.jitter=a;return this};c.setJitterBufferDelay=function(a){this.$1.jitter_buffer_delay=a;return this};c.setPackets=function(a){this.$1.packets=a;return this};c.setPacketsLost=function(a){this.$1.packets_lost=a;return this};c.setQpSum=function(a){this.$1.qp_sum=a;return this};c.setRtt=function(a){this.$1.rtt=a;return this};c.setStreamID=function(a){this.$1.stream_id=a;return this};c.setStreamType=function(a){this.$1.stream_type=a;return this};c.setTime=function(a){this.$1.time=a;return this};c.setTimeElapsed=function(a){this.$1.time_elapsed=a;return this};c.setVC=function(a){this.$1.vc=a;return this};c.setWeight=function(a){this.$1.weight=a;return this};c.updateExtraData=function(a){a=b("nullthrows")(b("GeneratedLoggerUtils").serializeMap(a));b("GeneratedLoggerUtils").checkExtraDataFieldNames(a,g);this.$1=babelHelpers["extends"]({},this.$1,a);return this};c.addToExtraData=function(a,b){var c={};c[a]=b;return this.updateExtraData(c)};return a}();var g={bytes:!0,call_id:!0,call_type:!0,conference_name:!0,frame_height:!0,frame_width:!0,frames:!0,frames_per_second:!0,is_local:!0,jitter:!0,jitter_buffer_delay:!0,packets:!0,packets_lost:!0,qp_sum:!0,rtt:!0,stream_id:!0,stream_type:!0,time:!0,time_elapsed:!0,vc:!0,weight:!0};e.exports=a}),null);
+__d("FBRTCMediaMetricParser",["FBRTCChromeMediaStatsReport","FBRTCConstants","FBRTCLogger","FBRTCMediaMetricsConst","FBRTCMozMediaStatsReport","FBRTCNetworkQualityMonitor","FBRTCSupport","RTCCallStore","RTCWebMediaStreamsTypedLogger","RTWebClientFeatureGating","UserAgent","gkx","qex"],(function(a,b,c,d,e,f){"use strict";var g=b("FBRTCConstants").SignalingProtocol,h=5e3;function i(){if(b("gkx")("678354")){var a=b("RTCCallStore").getState(),c=a.callInfo;a=a.callSummary;return new(b("RTCWebMediaStreamsTypedLogger"))().setCallID(c.callID).setTimeElapsed(a.getCurrentTimeFromCallConnected()).setConferenceName(c.conferenceName).setCallType(c.protocol===g.MULTIWAY?"mw":"p2p")}return null}function j(a,c){a.getVideoSendKeys().forEach(function(d){var e,f=a.getOutboundQpSum(d),g=a.getFramesEncoded(d),h=a.getVideoBytesSent(d),j=a.getVideoPacketsSent(d),k=a.getVideoPacketsSentLost(d);c.setVideoMetric(d,(e=b("FBRTCMediaMetricsConst")).OUTBOUND_QP,f);c.setVideoMetric(d,e.FRAMES_ENCODED,g);c.setVideoMetric(d,e.VIDEO_BYTES_SENT,h);c.setVideoMetric(d,e.VIDEO_PKTS_SENT,j);c.setVideoMetric(d,e.VIDEO_PKTS_SEND_LOST,k);e=i();e&&e.setIsLocal(!0).setStreamType("video").setStreamID(d).setFrames(g).setQpSum(f).setBytes(h).setPackets(j).setPacketsLost(k).setFrameHeight(a.getVideoFrameHeightSent(d)).setFramesPerSecond(a.getVideoFrameRateSent(d)).setFrameWidth(a.getVideoFrameWidthSent(d)).log()})}function k(a,c){a.getVideoBweKeys().forEach(function(d){var e=a.getVideoBweSendBandwidth(d),f=a.getVideoBweTransmitBitrate(d),g=a.getVideoBweRetransmitBitrate(d);c.setVideoMetric(d,b("FBRTCMediaMetricsConst").VIDEOBWE_SEND_BANDWIDTH,e);c.setVideoMetric(d,b("FBRTCMediaMetricsConst").VIDEOBWE_TRANSMIT_BITRATE,f);c.setVideoMetric(d,b("FBRTCMediaMetricsConst").VIDEOBWE_RETRANSMIT_BITRATE,g);f=i();f&&f.setIsLocal(!0).setStreamType("video").setStreamID(d).setBytes(e).log()})}function l(a,c){a.getVideoRecvKeys().forEach(function(d){var e,f=a.getInboundQpSum(d),g=a.getFramesDecoded(d),h=a.getVideoBytesReceived(d),j=a.getVideoPacketsReceived(d),k=a.getVideoPacketsReceivedLost(d);c.setVideoMetric(d,(e=b("FBRTCMediaMetricsConst")).VIDEO_BYTES_RECEIVED,h);c.setVideoMetric(d,e.INBOUND_QP,f);c.setVideoMetric(d,e.FRAMES_DECODED,g);c.setVideoMetric(d,e.VIDEO_PKTS_RECEIVED,j);c.setVideoMetric(d,e.VIDEO_PKTS_RECV_LOST,k);e=i();e&&e.setIsLocal(!1).setStreamType("video").setStreamID(d).setBytes(h).setFrames(g).setQpSum(f).setPackets(j).setPacketsLost(k).setFrameHeight(a.getVideoFrameHeightReceived(d)).setFramesPerSecond(a.getVideoFrameRateReceived(d)).setFrameWidth(a.getVideoFrameWidthReceived(d)).log()})}function m(a,c){a.getAudioSendKeys().forEach(function(d){var e,f=a.getAudioBytesSent(d),g=a.getAudioPacketsSent(d),h=a.getAudioPacketsSentLost(d),j=a.getAudioSendRtt(d);c.addMetricStat(d,(e=b("FBRTCMediaMetricsConst")).AUDIO_BYTES_SENT,f);c.addMetricStat(d,e.AUDIO_PACKETS_SENT,g);c.addMetricStat(d,e.AUDIO_PACKETS_SENT_LOST,h);c.addMetricStat(d,e.AUDIO_RTT_SENT,j);e=i();e&&e.setIsLocal(!0).setStreamType("audio").setStreamID(d).setPackets(g).setBytes(f).setRtt(j).setPacketsLost(h).log()})}function n(a,c){a.getAudioRecvKeys().forEach(function(d){var e,f=a.getJitterBufferDelay(d),g=a.getAudioJitter(d),h=a.getAccelerateRate(d),j=a.getExpandRate(d),k=a.getPreemptiveExpandRate(d),l=a.getDiscardRate(d),m=a.getAudioBytesReceived(d),n=a.getAudioPacketsReceived(d),o=a.getAudioPacketsReceivedLost(d),p=a.getAudioReceivedRtt(d);c.addJitterBufferDelay(d,f);c.addMetricStat(d,(e=b("FBRTCMediaMetricsConst")).JITTER,g);c.addMetricStat(d,e.ACCELERATE_RATE,h);c.addMetricStat(d,e.DISCARD_RATE,l);c.addMetricStat(d,e.EXPAND_RATE,j);c.addMetricStat(d,e.PREEMPTIVE_RATE,k);c.addMetricStat(d,e.DECODING_PLC,a.getAudioDecodingPLC(d));c.addMetricStat(d,e.DECODING_CNG,a.getAudioDecodingCNG(d));c.addMetricStat(d,e.DECODING_NORMAL,a.getAudioDecodingNormal(d));c.addMetricStat(d,e.DECODING_PLC_CNG,a.getAudioDecodingPLCCNG(d));c.addMetricStat(d,e.AUDIO_BYTES_RECEIVED,m);c.addMetricStat(d,e.AUDIO_PACKETS_RECEIVED,n);c.addMetricStat(d,e.AUDIO_PACKETS_RECEIVED_LOST,o);c.addMetricStat(d,e.AUDIO_RTT_RECEIVED,p);h=i();h&&h.setIsLocal(!1).setStreamType("audio").setStreamID(d).setJitter(g).setJitterBufferDelay(f).setBytes(m).setPackets(n).setRtt(p).setPacketsLost(o).log()})}var o={lastProcessedTime:0,parseStats:function(a,c){a=a.getStats();if(b("qex")._("885213")){var d,e=Date.now();b("qex")._("885214")&&(a=a.then(function(a){JSON.stringify(a);return a}));d=(d=b("qex")._("885215"))!=null?d:h;if(h-(e-o.lastProcessedTime)>d/2)return;o.lastProcessedTime=e}a.then(function(a){var d=null;b("FBRTCSupport").isChromiumBased()?d=new(b("FBRTCChromeMediaStatsReport"))(a):b("UserAgent").isBrowser("Firefox")&&(d=new(b("FBRTCMozMediaStatsReport"))(a));d&&o.parseStatsWithReport(d,c)})["catch"](function(a){b("FBRTCLogger").getInstance().logToConsole("error parsing RTCStatsReport")})},parseStatsWithReport:function(a,b){var c=b.getMediaMetricTracker();n(a,c);m(a,c);l(a,c);j(a,c);k(a,c);b.setConnectionType(a.getConnectionType());c=a.getVideoRecvCodecForConnection();c!=null&&c!==""&&b.setVideoReceivedCodec(c);c=a.getVideoSendCodecForConnection();c!=null&&c!==""&&b.setVideoSentCodec(c);c=a.getAudioSendCodecForConnection();c!=null&&c!==""&&b.setAudioSentCodec(c)},startCollectingMediaStats:function(){var a=null;(b("RTWebClientFeatureGating").shouldShowNetworkQualityIndicator()||b("RTWebClientFeatureGating").shouldMonitorNetworkQuality())&&(a=new(b("FBRTCNetworkQualityMonitor"))());var c=function c(){var d=b("RTCCallStore").getState().callInfo.conferenceState,e=b("RTCCallStore").getState().callSummary,f=b("RTCCallStore").getState().connections.first();if(d!=="TERMINATED"){f&&(o.parseStats(f,e),a!=null&&a.determineQuality(e.getMediaMetricTracker()));if(b("qex")._("885213")){f=(d=b("qex")._("885215"))!=null?d:h;window.setTimeout(c,f)}else window.setTimeout(c,h)}};c()}};e.exports=o}),null);
+__d("FBRTCNetworkQualityMonitor",["FBRTCExperiment","FBRTCMediaMetricsConst","RTCP2PCallActions","RTWebClientFeatureGating","RTWebUserActionLogger"],(function(a,b,c,d,e,f){"use strict";var g=2;a=function(){function a(){this.$3=0;var a=b("FBRTCExperiment").getMediaQualityExperiments();this.$1=a.getInt("rtt_threshold",Number.POSITIVE_INFINITY);this.$2=parseFloat(a.getParam("packet_loss_rate_threshold",String(Number.POSITIVE_INFINITY)));b("RTWebUserActionLogger").logEvent({eventName:"checkpoint",checkpoint:"FBRTCNetworkQualityMonitor constructed: rtt "+this.$1+", packetLoss "+this.$2})}var c=a.prototype;c.$4=function(a,b,c){a=a.getMetricStats(b,c);return a!=null?a.current>this.$1:!1};c.$5=function(a,b){a=a/(a+b);return a>=this.$2};c.$6=function(a,b,c,d){c=a.getMetricStats(b,c);a=a.getMetricStats(b,d);return c!=null&&a!=null?this.$5(c.current,a.current):!1};c.$7=function(a,b,c){var d=this,e=c.packetLostKey,f=c.packetsKey,g=c.rttKey;c=b.some(function(b){var c=d.$6(a,b,e,f);return c||d.$4(a,b,g)});return c};c.getCount=function(){return this.$3};c.determineQuality=function(a){var c,d=this.$3,e=this.$7(a,a.getAudioStreamReportKeys(),{packetLostKey:(c=b("FBRTCMediaMetricsConst")).AUDIO_PACKETS_SENT_LOST,packetsKey:c.AUDIO_PACKETS_SENT,rttKey:c.AUDIO_RTT_SENT});a=this.$7(a,a.getAudioStreamReportKeys(),{packetLostKey:c.AUDIO_PACKETS_RECEIVED_LOST,packetsKey:c.AUDIO_PACKETS_RECEIVED,rttKey:c.AUDIO_RTT_RECEIVED});e||a?this.$3<g&&this.$3++:this.$3>0&&this.$3--;d!==this.$3&&this.$3>=g?(b("RTWebUserActionLogger").logCheckpoint({checkpoint:"poor_network_quality_exceeded_threshold_"+this.$3}),b("RTWebClientFeatureGating").shouldShowNetworkQualityIndicator()&&b("RTCP2PCallActions").togglePoorNetworkQualityIndicator(!0)):d>0&&this.$3<=0&&(b("RTWebUserActionLogger").logCheckpoint({checkpoint:"network_quality_recovered_from_"+d}),b("RTWebClientFeatureGating").shouldShowNetworkQualityIndicator()&&b("RTCP2PCallActions").togglePoorNetworkQualityIndicator(!1))};return a}();e.exports=a}),null);
